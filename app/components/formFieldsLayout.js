@@ -63,27 +63,59 @@ const trueFalse = [
   { id: 2, name: 'False', value: false },
 ]
 
-const fieldDefs = {
-  //data: pdf.data, //Required
-  //page: pdf.page, //Required
-  //pdfDoc: pdf.pdfDoc, //Required
-  // columns: columnDefs,
-  // subHeadings: subHeadingDefs,
+const tableDefs = {
   startingX: {type: 'number'},
   startingY: {type: 'number'},
   maxTableWidth: {type: 'number'},
-  headerFont: {type: 'string', options: fontOptions, defaultOption: 0}, //Required
-  cellFont: {type: 'string', options: fontOptions, defaultOption: 0}, //Required
-  headerTextAlignment: {type: 'string', options: [{ id: 1, name: 'Left', value: 'left' }, { id: 2, name: 'Center', value: 'center' }, { id: 3, name: 'Right', value: 'right' }], defaultOption: 1},
   tableBoarder: {type: 'string', options: trueFalse, defaultOption: 0}, 
   tableBoarderThickness: {type: 'number'}, 
   tableBoarderColor:  {type: 'string', options: colorOptions, defaultOption: 0},
-  // //Header
-  headerTextColor: {type: 'string', options: colorOptions, defaultOption: 0},
-  headerBackgroundColor: {type: 'string', options: colorOptions, defaultOption: 0},
-  headerDividedYColor: {type: 'string', options: colorOptions, defaultOption: 0},
-  headerDividedYThickness: {type: 'number'},
-  headerDividedY: {type: 'string', options: trueFalse, defaultOption: 0},
-  headerWrapText: {type: 'string', options: trueFalse, defaultOption: 0},
-};
+  alternateRowColor: {type: 'string', options: trueFalse, defaultOption: 0},
+  alternateCellColor: {type: 'string', options: colorOptions, defaultOption: 0},
 
+}
+
+
+const headerDefs = {
+  headerHeight: {type: 'number'},
+  headerBackgroundColor: {type: 'string', options: colorOptions, defaultOption: 0},
+  
+  headerFont: {type: 'string', options: fontOptions, defaultOption: 0},
+  headerTextSize: {type: 'number'},
+  headerTextAlignment: {type: 'string', options: [{ id: 1, name: 'Left', value: 'left' }, { id: 2, name: 'Center', value: 'center' }, { id: 3, name: 'Right', value: 'right' }], defaultOption: 1},
+  headerTextColor: {type: 'string', options: colorOptions, defaultOption: 0},
+  
+  headerDividedY: {type: 'string', options: trueFalse, defaultOption: 0},
+  headerDividedYColor: {type: 'string', options: colorOptions, defaultOption: 0},
+  headerDividedXThickness: {type: 'number'},
+
+  headerDividedX: {type: 'string', options: trueFalse, defaultOption: 0},
+  headerDividedXColor: {type: 'string', options: colorOptions, defaultOption: 0},
+  headerDividedYThickness: {type: 'number'},
+  
+  headerWrapText: {type: 'string', options: trueFalse, defaultOption: 0},
+}
+
+const cellDefs = {
+  cellHeight: {type: 'number'},
+  cellBackgroundColor: {type: 'string', options: colorOptions, defaultOption: 0},
+  cellFont: {type: 'string', options: fontOptions, defaultOption: 0}, //Required
+  cellTextSize: {type: 'number'},
+  cellTextColor: {type: 'string', options: colorOptions, defaultOption: 0},
+  cellPaddingBottom: {type: 'number'},
+}
+
+
+
+
+
+
+
+const fieldDefs = {
+  //TABLE
+  ...tableDefs,
+  //Header
+  ...headerDefs,
+  //CELLS
+  ...cellDefs
+};

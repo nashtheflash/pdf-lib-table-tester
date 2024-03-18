@@ -54,8 +54,14 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
         TimesRomanBoldItalic,
         TimesRomanItalic,
     };
-    
-    const pdfSettings = {
+
+
+
+
+
+
+    //TABLE SETTINGS
+    const tableSettings = {
         data: tableData, //Required
         page, //Required
         pdfDoc, //Required
@@ -63,22 +69,70 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
         startingX: Number(userPdfSettings?.startingX) || 0,
         startingY: Number(userPdfSettings?.startingY) || page.getHeight(),
         maxTableWidth: Number(userPdfSettings?.maxTableWidth) || 550,
-        subHeadings: subHeadingDefs,
-        headerFont: fontLookup[userPdfSettings?.headerFont] || fontLookup.Courier, //Required
-        cellFont: fontLookup[userPdfSettings?.cellFont] || fontLookup.Courier, //Required
-        headerTextAlignment: userPdfSettings?.headerTextAlignment || 'center',
         tableBoarder: userPdfSettings?.tableBoarder, 
         tableBoarderThickness: Number(userPdfSettings?.tableBoarderThickness) || 1, 
         tableBoarderColor:  userPdfSettings?.tableBoarderColor || rgb(.56, .56, .56),
+        alternateRowColor: userPdfSettings?.alternateRowColor, //TODO: add this
+        alternateCellColor: userPdfSettings?.alternateCellColor, //TODO: add this
+    };
+
+    //HEADER SETTINGS
+    const headerSettings = {
         //Header
+        headerHeight: Number(userPdfSettings?.headerHeight) || 0,
+        headerBackgroundColor: userPdfSettings?.headerBackgroundColor,
+
+        headerFont: fontLookup[userPdfSettings?.headerFont] || fontLookup.Courier,
+        headerTextSize: Number(userPdfSettings?.headerTextSize) || 10,
+        headerTextAlignment: userPdfSettings?.headerTextAlignment || 'center',
         headerTextColor: userPdfSettings?.headerTextColor,
-        headerBackgroundColor:  userPdfSettings?.headerBackgroundColor,
+        
+        headerDividedY: userPdfSettings?.headerDividedY,
         headerDividedYColor: userPdfSettings?.headerDividedYColor || rgb(.03, .03, .03),
         headerDividedYThickness: Number(userPdfSettings?.headerDividedYThickness) || 0,
-        headerDividedY: userPdfSettings?.headerDividedY,
+    
+        headerDividedX: userPdfSettings?.headerDividedX,
+        headerDividedXColor: userPdfSettings?.headerDividedXColor,
+        headerDividedXThickness: Number(userPdfSettings?.headerDividedXThickness) || 1,
+        
         headerWrapText: !userPdfSettings || userPdfSettings?.headerWrapText == true ? true : false,
     };
+
+    //SUBHEADING SETTINGS
+    const subHeadingSetting = {
+        subHeadings: subHeadingDefs,
+    };
+
+    //CELL SETTINGS
+    const cellSettings = {
+        cellHeight: Number(userPdfSettings?.cellHeight) || undefined,
+        cellBackgroundColor: userPdfSettings?.cellBackgroundColor,
+        cellFont: fontLookup[userPdfSettings?.cellFont] || fontLookup.Courier, //Required
+        cellTextSize: Number(userPdfSettings?.cellTextSize) || 10,
+        cellTextColor: userPdfSettings?.cellTextColor,
+        cellPaddingBottom: Number(userPdfSettings?.cellTextSize) || 0,
+    };
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    const pdfSettings = {
+        ...tableSettings,
+        ...subHeadingSetting,
+        ...headerSettings,
+        ...cellSettings,
+    };
     await drawTable(pdfSettings);
   
     const pdfBytes = await pdfDoc.save()
