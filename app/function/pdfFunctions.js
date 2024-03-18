@@ -65,16 +65,16 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
         maxTableWidth: Number(userPdfSettings?.maxTableWidth) || 550,
         subHeadings: subHeadingDefs,
         headerFont: fontLookup[userPdfSettings?.headerFont] || fontLookup.Courier, //Required
-        cellFont: fontLookup[userPdfSettings?.headerFont] || fontLookup.Courier, //Required
+        cellFont: fontLookup[userPdfSettings?.cellFont] || fontLookup.Courier, //Required
         headerTextAlignment: userPdfSettings?.headerTextAlignment || 'center',
         tableBoarder: userPdfSettings?.tableBoarder, 
         tableBoarderThickness: Number(userPdfSettings?.tableBoarderThickness) || 1, 
-        tableBoarderColor:  userPdfSettings?.headerTextColor || rgb(.56, .56, .56),
+        tableBoarderColor:  userPdfSettings?.tableBoarderColor || rgb(.56, .56, .56),
         //Header
         headerTextColor: userPdfSettings?.headerTextColor,
         headerBackgroundColor:  userPdfSettings?.headerBackgroundColor,
         headerDividedYColor: userPdfSettings?.headerDividedYColor || rgb(.03, .03, .03),
-        headerDividedYThickness: userPdfSettings?.headerDividedYThickness || 0,
+        headerDividedYThickness: Number(userPdfSettings?.headerDividedYThickness) || 0,
         headerDividedY: userPdfSettings?.headerDividedY,
         headerWrapText: !userPdfSettings || userPdfSettings?.headerWrapText == true ? true : false,
     };
