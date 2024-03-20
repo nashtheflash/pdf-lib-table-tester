@@ -9,7 +9,8 @@ import { tableData } from '../data';
 export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl }) {
 
     const pdfDoc = await PDFDocument.create();
-    const page = pdfDoc.addPage([612.0, 792.0]);
+    // const page = pdfDoc.addPage([612.0, 792.0]); //TODO: add as option started below
+    const page = pdfDoc.addPage([792.0, 612.0]);
     
     //add fonts to the doc
     const [
@@ -62,24 +63,33 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
 
     //TABLE SETTINGS
     const tableSettings = {
-        data: tableData, //Required
-        page, //Required
-        pdfDoc, //Required
+        data: tableData(), //Required
         columns: columnDefs,
+        page, //Required
+        pageOrientation: userPdfSettings?.pageOrientation || 'protrate', //TODO: finish this
+        pdfDoc, //Required
+        fonts: StandardFonts,
         startingX: Number(userPdfSettings?.startingX) || 0,
         startingY: Number(userPdfSettings?.startingY) || page.getHeight(),
-        maxTableWidth: Number(userPdfSettings?.maxTableWidth) || 550,
+        maxTableWidth: Number(userPdfSettings?.maxTableWidth) || page.getWidth(),
         tableBoarder: userPdfSettings?.tableBoarder, 
         tableBoarderThickness: Number(userPdfSettings?.tableBoarderThickness) || 1, 
         tableBoarderColor:  userPdfSettings?.tableBoarderColor || rgb(.56, .56, .56),
         alternateRowColor: userPdfSettings?.alternateRowColor, //TODO: add this
         alternateCellColor: userPdfSettings?.alternateCellColor, //TODO: add this
+        
+        dividedX: userPdfSettings?.dividedX, // Default true - sets if the table has x dividers
+        dividedY: userPdfSettings?.dividedY, // Default true - sets if the table has y dividers
+        dividedXColor: userPdfSettings?.dividedXColor, // Default rgb(0,0,0) - can pass in any pdf-lib rgb value
+        dividedYColor: userPdfSettings?.dividedYColor, // Default rgb(0,0,0) - can pass in any pdf-lib rgb value
+        dividedXThickness: Number(userPdfSettings?.dividedXThickness) || 1, // Default 1 - sets x divider thickness
+        dividedYThickness: Number(userPdfSettings?.dividedYThickness) || 1, // Default 1 - sets y divider thickness
     };
 
     //HEADER SETTINGS
     const headerSettings = {
         //Header
-        headerHeight: Number(userPdfSettings?.headerHeight) || 0,
+        headerHeight: Number(userPdfSettings?.headerHeight) || 10,
         headerBackgroundColor: userPdfSettings?.headerBackgroundColor,
 
         headerFont: fontLookup[userPdfSettings?.headerFont] || fontLookup.Courier,
@@ -108,7 +118,7 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
         cellHeight: Number(userPdfSettings?.cellHeight) || undefined,
         cellBackgroundColor: userPdfSettings?.cellBackgroundColor,
         cellFont: fontLookup[userPdfSettings?.cellFont] || fontLookup.Courier, //Required
-        cellTextSize: Number(userPdfSettings?.cellTextSize) || 10,
+        cellTextSize: Number(userPdfSettings?.cellTextSize) || 8,
         cellTextColor: userPdfSettings?.cellTextColor,
         cellPaddingBottom: Number(userPdfSettings?.cellTextSize) || 0,
     };

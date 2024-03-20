@@ -40,7 +40,7 @@ const colorOptions = [
   { id: 6, name: 'Orange', value: rgb(.90, .56, .11) },
   { id: 7, name: 'Green', value: rgb(.28, .90, .11) },
   { id: 8, name: 'Purple', value: rgb(.83, .11, .90) },
-  { id: 9, name: 'Black', value: rgb(.03, .03, .03)}, //TODO: idk why this does not work
+  { id: 9, name: 'Black', value: rgb(0, 0, 0)}, //TODO: idk why this does not work
 ]
 
 const fontOptions = [
@@ -72,6 +72,13 @@ const tableDefs = {
   tableBoarderColor:  {type: 'string', options: colorOptions, defaultOption: 0},
   alternateRowColor: {type: 'string', options: trueFalse, defaultOption: 0},
   alternateCellColor: {type: 'string', options: colorOptions, defaultOption: 0},
+
+  dividedX: {type: 'string', options: trueFalse, defaultOption: 0},
+  dividedY: {type: 'string', options: trueFalse, defaultOption: 0},
+  dividedXColor:  {type: 'string', options: colorOptions, defaultOption: 0},
+  dividedYColor:  {type: 'string', options: colorOptions, defaultOption: 0},
+  dividedXThickness: {type: 'number'},
+  dividedYThickness: {type: 'number'},
 
 }
 
