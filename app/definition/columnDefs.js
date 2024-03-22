@@ -1,18 +1,18 @@
 export const columnDefs = [
-  {
-    columnId:'inventory',
-    header: 'Inventory',
-    type: 'text', //text/number/currency
-    wrapText: true, //optional
-    // width: 55 //optional
-  },
-  {
-    columnId:'inventory_date',
-    header: 'Date',
-    type: 'text', //text/number/currency
-    wrapText: true, //optional
-    // width: 90 //optional
-  },
+  // {
+  //   columnId:'inventory',
+  //   header: 'Inventory',
+  //   type: 'text', //text/number/currency
+  //   wrapText: true, //optional
+  //   // width: 55 //optional
+  // },
+  // {
+  //   columnId:'inventory_date',
+  //   header: 'Date',
+  //   type: 'text', //text/number/currency
+  //   wrapText: true, //optional
+  //   // width: 90 //optional
+  // },
   {
     columnId:'serial',
     header: 'Serial',

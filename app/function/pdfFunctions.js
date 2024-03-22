@@ -6,10 +6,10 @@ import { columnDefs } from '../definition';
 import { subHeadingDefs } from '../definition';
 import { tableData } from '../data';
 
-export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl }) {
+export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl}) {
+
 
     const pdfDoc = await PDFDocument.create();
-    // const page = pdfDoc.addPage([612.0, 792.0]); //TODO: add as option started below
     const page = pdfDoc.addPage([792.0, 612.0]);
     
     //add fonts to the doc
@@ -55,11 +55,6 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
         TimesRomanBoldItalic,
         TimesRomanItalic,
     };
-
-
-
-
-
 
     //TABLE SETTINGS
     const tableSettings = {
@@ -125,24 +120,13 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     const pdfSettings = {
         ...tableSettings,
         ...subHeadingSetting,
         ...headerSettings,
         ...cellSettings,
     };
+
     await drawTable(pdfSettings);
   
     const pdfBytes = await pdfDoc.save()
@@ -153,4 +137,6 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
   
     !userPdfSettings && setUserPdfSettings(pdfSettings);
     setPdfUrl(docUrl);
+
+    return pdfSettings
 };
