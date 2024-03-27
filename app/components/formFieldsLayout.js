@@ -3,26 +3,56 @@ import { PDFDocument, StandardFonts, degrees, rgb, cmyk } from 'pdf-lib';
 import { StandardField, MultiSelect } from "./";
 
 export function FormFieldsLayout({userPdfSettings, setUserPdfSettings}) {
+
+  return (
+    <>
+      {
+        Object.keys(userPdfSettings).map((section) => {
+          return (
+            <div className="collapse collapse-arrow bg-base-100 mb-2">
+              <input type="radio" name="my-accordion-2" className="w-full" /> 
+              <div className="collapse-title text-xl font-medium text-primary">
+                {section}
+              </div>
+              <div className="collapse-content text-gray-500"> 
+                <FormInputs 
+                  userPdfSettings={userPdfSettings[section]}
+                  setUserPdfSettings={setUserPdfSettings}
+                  section={section}
+                />
+              </div>
+            </div>
+          )
+        })
+      }
+    </>
+  )
+};
+
+
+export function FormInputs({userPdfSettings, setUserPdfSettings, section}) {
   return (
     <>
       {
         userPdfSettings && Object.keys(userPdfSettings).map((key) => fieldDefs[key] && (
           <div key={key} className="relative mt-3">
             {
-            fieldDefs[key].options ? 
-            <MultiSelect
-              field={key}
-              fieldDef={fieldDefs[key]}
-              userPdfSettings ={userPdfSettings}
-              setUserPdfSettings ={setUserPdfSettings}
-            />
-            :
-            <StandardField
-              field={key}
-              fieldDef={fieldDefs[key]}
-              userPdfSettings ={userPdfSettings}
-              setUserPdfSettings ={setUserPdfSettings}
-            />
+              fieldDefs[key].options ? 
+              <MultiSelect
+                field={key}
+                fieldDef={fieldDefs[key]}
+                userPdfSettings ={userPdfSettings}
+                setUserPdfSettings ={setUserPdfSettings}
+                section={section}
+              />
+              :
+              <StandardField
+                field={key}
+                fieldDef={fieldDefs[key]}
+                userPdfSettings ={userPdfSettings}
+                setUserPdfSettings ={setUserPdfSettings}
+                section={section}
+              />
             }
           </div>
         ))

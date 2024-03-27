@@ -35,26 +35,32 @@ export function HomeLayout({  }) {
   // }, [])
 
   return (
-    <div className='bg-white'>
-      <div className='grid grid-cols-4'>
+    <div className='bg-base-200 min-h-screen'>
+      <div className='grid grid-cols-4 justify-center'>
         <div className='col-span-1'>
-          <div className='sticky top-0 px-4'>
-            <h1 className='text-black mb-3'>Settings</h1>
+          <div className='sticky top-0 px-4 pt-5'>
+            <h1 className="text-primary">PDF-LIB-TABLE</h1>
+            <div className="flex flex-col w-full">
+              <div className="divider divider-primary mt-0"></div>
+            </div>
             <FormFieldsLayout
               userPdfSettings={userPdfSettings}
               setUserPdfSettings={setUserPdfSettings}
               //pdfSettings={pdfSettings}
             />
+            </div>
           </div>
-        </div>
-        
-        <div className='col-span-3'>
-          { !pdfUrl ? 'Loading...' :
+        <div className='col-span-3 h-screen'>
+          { !pdfUrl ? 
+            <div className="flex flex-col h-full w-full p-5 justify-center items-center">
+              <div className="skeleton w-full h-full"></div>
+            </div> 
+            :
             <iframe
             id="inlineFrameExample"
             title="Inline Frame Example"
             width="100%"
-            height="1200"
+            height="100%"
             src={pdfUrl}
             >
           </iframe>
@@ -94,12 +100,12 @@ const tableSettings = {
 //HEADER SETTINGS
 const headerSettings = {
   //Header
-  headerHeight: 10,
+  headerHeight: undefined,
   headerBackgroundColor: undefined,
 
-  headerFont: StandardFonts.TimesRoman,
+  headerFont: StandardFonts.TimesRomanBold,
   headerTextSize: 10,
-  headerTextAlignment: 'center',
+  headerTextAlignment: 'left',
   headerTextColor: undefined,
   
   headerDividedY: true,
@@ -131,8 +137,8 @@ const cellSettings = {
 
 
 const pdfSettings = {
-    ...tableSettings,
-    ...subHeadingSetting,
-    ...headerSettings,
-    ...cellSettings,
+  Table: tableSettings,
+  Header: headerSettings,
+  Subheader: subHeadingSetting,
+  Cell: cellSettings,
 };

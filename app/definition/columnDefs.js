@@ -78,7 +78,7 @@ export const columnDefs = [
   },
   {
     columnId:'Notes',
-    header: 'Notes',
+    header: 'Notes is going to be a longer column that needs to be wrapped',
     type: 'text', //text/number/currency
     wrapText: true, //optional
     // width: 50 //optional
