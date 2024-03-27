@@ -87,10 +87,12 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
     const headerSettings = {
         //Header
         headerHeight: Number(userPdfSettings?.Header.headerHeight) || undefined,
+        headerBackgroundColor: userPdfSettings?.Header.headerBackgroundColor || undefined,
 
         headerFont: fontLookup[userPdfSettings?.Header.headerFont] || fontLookup.TimesRomanBold,
         headerTextSize: Number(userPdfSettings?.Header.headerTextSize) || 10,
         headerTextAlignment: userPdfSettings?.Header.headerTextAlignment || 'center',
+        headerTextJustification: userPdfSettings?.Header.headerTextJustification || 'top',
         headerTextColor: userPdfSettings?.Header.headerTextColor,
         
         headerDividedY: userPdfSettings?.Header.headerDividedY,
@@ -114,9 +116,10 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
         cellHeight: Number(userPdfSettings?.Cell.cellHeight) || undefined,
         cellBackgroundColor: userPdfSettings?.Cell.cellBackgroundColor,
         cellFont: fontLookup[userPdfSettings?.Cell.cellFont] || fontLookup.TimesRoman, //Required
-        cellTextSize: Number(userPdfSettings?.Cell.cellTextSize) || 8,
+        cellTextSize: Number(userPdfSettings?.Cell.cellTextSize) || 10,
+        cellLineHeight: Number(userPdfSettings?.Cell.cellTextSize) || 10,
         cellTextColor: userPdfSettings?.Cell.cellTextColor,
-        cellPaddingBottom: Number(userPdfSettings?.Cell.cellTextSize) || 0,
+        cellPaddingBottom: Number(userPdfSettings?.Cell.cellPaddingBottom) || 0,
     };
     
     

@@ -9,7 +9,7 @@ function classNames(...classes) {
 }
 
 export function MultiSelect({field, fieldDef, userPdfSettings, setUserPdfSettings, section}) {
-  const [selected, setSelected] = useState(fieldDef.options[fieldDef.defaultOption])
+  const [selected, setSelected] = useState(fieldDef.options[fieldDef.defaultOption]);
 
   const handelSelection = ({ id }) => {
     
@@ -17,12 +17,12 @@ export function MultiSelect({field, fieldDef, userPdfSettings, setUserPdfSetting
     
     setUserPdfSettings((prevState) => ({
         ...prevState,
-        [section]: {...prevState[section], [field]: fieldDef.options[id - 1].value}
+        [section]: {
+          ...prevState[section], 
+          [field]: fieldDef.options[id - 1].value
+        }
       })
     )
-
-    console.log(section, fieldDef.options[id - 1])
-
   }
 
   return (

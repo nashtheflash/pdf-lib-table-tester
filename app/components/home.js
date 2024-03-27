@@ -81,8 +81,8 @@ const tableSettings = {
   //pdfDoc, //Required
   fonts: StandardFonts,
   startingX: 0,
-  //startingY: page.getHeight(),
-  //maxTableWidth: page.getWidth(),
+  startingY: 612,
+  maxTableWidth: 792,
   tableBoarder: true, 
   tableBoarderThickness: 1, 
   tableBoarderColor: rgb(.56, .56, .56),
@@ -105,8 +105,9 @@ const headerSettings = {
 
   headerFont: StandardFonts.TimesRomanBold,
   headerTextSize: 10,
-  headerTextAlignment: 'left',
   headerTextColor: undefined,
+  headerTextAlignment: 'left',
+  headerTextJustification: 'top',
   
   headerDividedY: true,
   headerDividedYColor: undefined,
@@ -129,7 +130,8 @@ const cellSettings = {
     cellHeight: 8,
     cellBackgroundColor: undefined,
     cellFont: StandardFonts.TimesRoman, //Required
-    cellTextSize: 8,
+    cellTextSize: 10,
+    cellLineHeight: 10,
     cellTextColor: undefined,
     cellPaddingBottom: 0,
 };

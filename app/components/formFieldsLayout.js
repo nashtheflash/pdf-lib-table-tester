@@ -9,14 +9,14 @@ export function FormFieldsLayout({userPdfSettings, setUserPdfSettings}) {
       {
         Object.keys(userPdfSettings).map((section) => {
           return (
-            <div className="collapse collapse-arrow bg-base-100 mb-2">
+            <div key={section} className="collapse collapse-arrow bg-base-100 mb-2">
               <input type="radio" name="my-accordion-2" className="w-full" /> 
               <div className="collapse-title text-xl font-medium text-primary">
                 {section}
               </div>
               <div className="collapse-content text-gray-500"> 
                 <FormInputs 
-                  userPdfSettings={userPdfSettings[section]}
+                  userPdfSettings={userPdfSettings}
                   setUserPdfSettings={setUserPdfSettings}
                   section={section}
                 />
@@ -34,7 +34,7 @@ export function FormInputs({userPdfSettings, setUserPdfSettings, section}) {
   return (
     <>
       {
-        userPdfSettings && Object.keys(userPdfSettings).map((key) => fieldDefs[key] && (
+        userPdfSettings[section] && Object.keys(userPdfSettings[section]).map((key) => fieldDefs[key] && (
           <div key={key} className="relative mt-3">
             {
               fieldDefs[key].options ? 
@@ -119,7 +119,8 @@ const headerDefs = {
   
   headerFont: {type: 'string', options: fontOptions, defaultOption: 0},
   headerTextSize: {type: 'number'},
-  headerTextAlignment: {type: 'string', options: [{ id: 1, name: 'Left', value: 'left' }, { id: 2, name: 'Center', value: 'center' }, { id: 3, name: 'Right', value: 'right' }], defaultOption: 1},
+  headerTextAlignment: {type: 'string', options: [{ id: 1, name: 'Left', value: 'left' }, { id: 2, name: 'Center', value: 'center' }, { id: 3, name: 'Right', value: 'right' }], defaultOption: 0},
+  headerTextJustification: {type: 'string', options: [{ id: 1, name: 'Top', value: 'top' }, { id: 2, name: 'Center', value: 'center' }, { id: 3, name: 'Bottom', value: 'bottom' }], defaultOption: 0},
   headerTextColor: {type: 'string', options: colorOptions, defaultOption: 0},
   
   headerDividedY: {type: 'string', options: trueFalse, defaultOption: 0},
@@ -138,6 +139,7 @@ const cellDefs = {
   cellBackgroundColor: {type: 'string', options: colorOptions, defaultOption: 0},
   cellFont: {type: 'string', options: fontOptions, defaultOption: 0}, //Required
   cellTextSize: {type: 'number'},
+  cellLineHeight: {type: 'number'},
   cellTextColor: {type: 'string', options: colorOptions, defaultOption: 0},
   cellPaddingBottom: {type: 'number'},
 }
