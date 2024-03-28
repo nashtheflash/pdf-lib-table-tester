@@ -86,8 +86,8 @@ const tableSettings = {
   tableBoarder: true, 
   tableBoarderThickness: 1, 
   tableBoarderColor: rgb(.56, .56, .56),
-  alternateRowColor: true, //TODO: add this
-  alternateCellColor: true, //TODO: add this
+  // alternateRowColor: true, //TODO: add this
+  // alternateCellColor: true, //TODO: add this
   
   dividedX: true, // Default true - sets if the table has x dividers
   dividedY: true, // Default true - sets if the table has y dividers
@@ -125,15 +125,22 @@ const subHeadingSetting = {
   subHeadings: subHeadingDefs,
 };
 
+//ROW SECTION
+const rowSettings = {
+  rowBackgroundColor: undefined,
+  alternateRowColor: true,
+  alternateRowColorValue: undefined
+};
+
 //CELL SETTINGS
 const cellSettings = {
-    cellHeight: 8,
-    cellBackgroundColor: undefined,
-    cellFont: StandardFonts.TimesRoman, //Required
-    cellTextSize: 10,
-    cellLineHeight: 10,
-    cellTextColor: undefined,
-    cellPaddingBottom: 0,
+  cellFont: undefined, //Required
+  cellTextColor: undefined,
+  cellBackgroundColor: undefined,
+  cellTextSize: undefined,
+  cellLineHeight: 10,
+  cellPaddingBottom: 0,
+  cellHeight: 8,
 };
 
 
@@ -141,6 +148,7 @@ const cellSettings = {
 const pdfSettings = {
   Table: tableSettings,
   Header: headerSettings,
-  Subheader: subHeadingSetting,
+  Row: rowSettings,
   Cell: cellSettings,
+  Subheader: subHeadingSetting,
 };

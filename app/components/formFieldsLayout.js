@@ -1,6 +1,7 @@
 import { PDFDocument, StandardFonts, degrees, rgb, cmyk } from 'pdf-lib';
 
 import { StandardField, MultiSelect } from "./";
+import { Row } from 'pdf-lib-table/classes';
 
 export function FormFieldsLayout({userPdfSettings, setUserPdfSettings}) {
 
@@ -131,12 +132,18 @@ const headerDefs = {
   headerDividedXColor: {type: 'string', options: colorOptions, defaultOption: 0},
   headerDividedYThickness: {type: 'number'},
   
-  headerWrapText: {type: 'string', options: trueFalse, defaultOption: 0},
+  //headerWrapText: {type: 'string', options: trueFalse, defaultOption: 0},
+}
+
+const rowDefs = {
+  rowBackgroundColor: {type: 'string', options: colorOptions, defaultOption: 0},
+  alternateRowColor: {type: 'string', options: trueFalse, defaultOption: 0},
+  alternateRowColorValue: {type: 'string', options: colorOptions, defaultOption: 0},
 }
 
 const cellDefs = {
-  cellHeight: {type: 'number'},
-  cellBackgroundColor: {type: 'string', options: colorOptions, defaultOption: 0},
+  //cellHeight: {type: 'number'},
+  //cellBackgroundColor: {type: 'string', options: colorOptions, defaultOption: 0},
   cellFont: {type: 'string', options: fontOptions, defaultOption: 0}, //Required
   cellTextSize: {type: 'number'},
   cellLineHeight: {type: 'number'},
@@ -155,6 +162,8 @@ const fieldDefs = {
   ...tableDefs,
   //Header
   ...headerDefs,
+  //Row
+  ...rowDefs,
   //CELLS
   ...cellDefs
 };

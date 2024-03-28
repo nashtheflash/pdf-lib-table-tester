@@ -16,10 +16,10 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
     
     //add fonts to the doc
     const [
-        //Courier,
-        // CourierBold,
-        // CourierBoldOblique,
-        // CourierOblique,
+        Courier,
+        CourierBold,
+        CourierBoldOblique,
+        CourierOblique,
         Helvetica,
         HelveticaBold,
         HelveticaBoldOblique,
@@ -29,10 +29,10 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
         TimesRomanBoldItalic,
         TimesRomanItalic,
     ] = await Promise.all([
-        //pdfDoc.embedFont(StandardFonts.Courier),              //TODO: Remove not suported
-        //pdfDoc.embedFont(StandardFonts.CourierBold),          //TODO: Remove not suported
-        //pdfDoc.embedFont(StandardFonts.CourierBoldOblique),   //TODO: Remove not suported
-        //pdfDoc.embedFont(StandardFonts.CourierOblique),       //TODO: Remove not suported
+        pdfDoc.embedFont(StandardFonts.Courier),              //TODO: Remove not suported
+        pdfDoc.embedFont(StandardFonts.CourierBold),          //TODO: Remove not suported
+        pdfDoc.embedFont(StandardFonts.CourierBoldOblique),   //TODO: Remove not suported
+        pdfDoc.embedFont(StandardFonts.CourierOblique),       //TODO: Remove not suported
         pdfDoc.embedStandardFont(StandardFonts.Helvetica),              //Supported
         pdfDoc.embedStandardFont(StandardFonts.HelveticaBold),          //Supported
         pdfDoc.embedStandardFont(StandardFonts.HelveticaBoldOblique),   //Supported
@@ -44,10 +44,10 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
     ])
 
     const fontLookup = {
-        //Courier,
-        // CourierBold,
-        // CourierBoldOblique,
-        // CourierOblique,
+        Courier,
+        CourierBold,
+        CourierBoldOblique,
+        CourierOblique,
         Helvetica,
         HelveticaBold,
         HelveticaBoldOblique,
@@ -72,8 +72,8 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
         tableBoarder: userPdfSettings?.Table.tableBoarder, 
         tableBoarderThickness: Number(userPdfSettings?.Table.tableBoarderThickness) || 1, 
         tableBoarderColor:  userPdfSettings?.Table.tableBoarderColor || rgb(.56, .56, .56),
-        alternateRowColor: userPdfSettings?.Table.alternateRowColor, //TODO: add this
-        alternateCellColor: userPdfSettings?.Table.alternateCellColor, //TODO: add this
+        // alternateRowColor: userPdfSettings?.Table.alternateRowColor, //TODO: add this
+        // alternateCellColor: userPdfSettings?.Table.alternateCellColor, //TODO: add this
         
         dividedX: userPdfSettings?.Table.dividedX, // Default true - sets if the table has x dividers
         dividedY: userPdfSettings?.Table.dividedY, // Default true - sets if the table has y dividers
@@ -106,11 +106,13 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
         headerWrapText: !userPdfSettings || userPdfSettings?.Header.headerWrapText == true ? true : false,
     };
 
-    //SUBHEADING SETTINGS
-    const subHeadingSetting = {
-        subHeadings: subHeadingDefs,
+    //ROW SECTION
+    const rowSettings = {
+        rowBackgroundColor: userPdfSettings?.Row.rowBackgroundColor,
+        alternateRowColor: userPdfSettings?.Row.alternateRowColor,
+        alternateRowColorValue: userPdfSettings?.Row.alternateRowColorValue
     };
-
+    
     //CELL SETTINGS
     const cellSettings = {
         cellHeight: Number(userPdfSettings?.Cell.cellHeight) || undefined,
@@ -122,13 +124,18 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
         cellPaddingBottom: Number(userPdfSettings?.Cell.cellPaddingBottom) || 0,
     };
     
+    //SUBHEADING SETTINGS
+    const subHeadingSetting = {
+        subHeadings: subHeadingDefs,
+    };
     
     
     const pdfSettings = {
         ...tableSettings,
-        ...subHeadingSetting,
         ...headerSettings,
+        ...rowSettings,
         ...cellSettings,
+        ...subHeadingSetting,
     };
 
     await drawTable(pdfSettings);
@@ -139,12 +146,14 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
     const blob   = new Blob( [ bytes ], { type: "application/pdf" } );
     const docUrl = await URL.createObjectURL(blob)
 
+
     const stateSettings = {
         Table: tableSettings,
         Header: headerSettings,
-        Subheader: subHeadingSetting,
+        Row: rowSettings,
         Cell: cellSettings,
-      };
+        Subheader: subHeadingSetting,
+    };
   
     !userPdfSettings && setUserPdfSettings(stateSettings);
     setPdfUrl(docUrl);
