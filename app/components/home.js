@@ -51,6 +51,12 @@ export function HomeLayout({  }) {
             </div>
           </div>
         <div className='col-span-3 h-screen'>
+        <div className="navbar bg-base-200">
+          <a className="btn btn-ghost text-xl text-primary">Example 1</a>
+          <a className="btn btn-ghost text-xl text-primary">Example 2</a>
+          <a className="btn btn-ghost text-xl text-primary">Example 3</a>
+          <a className="btn btn-ghost text-xl text-primary">Example 4</a>
+        </div>
           { !pdfUrl ? 
             <div className="flex flex-col h-full w-full p-5 justify-center items-center">
               <div className="skeleton w-full h-full"></div>

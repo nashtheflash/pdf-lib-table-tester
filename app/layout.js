@@ -11,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="retro">
-      <body className={`${inter.className} bg-base-100`}>{children}</body>
+      <body className={`${inter.className} bg-base-100`} suppressHydrationWarning={true}>{children}</body>
     </html>
   );
 }
