@@ -12,7 +12,6 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
     const pdfDoc = await PDFDocument.create();
     const page = pdfDoc.addPage([792.0, 612.0]);
     const data = await tableData();
-    //console.log(data);
     
     //add fonts to the doc
     const [
@@ -81,6 +80,14 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
         dividedYColor: userPdfSettings?.Table.dividedYColor, // Default rgb(0,0,0) - can pass in any pdf-lib rgb value
         dividedXThickness: Number(userPdfSettings?.Table.dividedXThickness) || 1, // Default 1 - sets x divider thickness
         dividedYThickness: Number(userPdfSettings?.Table.dividedYThickness) || 1, // Default 1 - sets y divider thickness
+
+        //Continuation
+        continuationFont: userPdfSettings?.Table.continuationFontSize, // Text font
+        continuationTextX: Number(userPdfSettings?.Table.continuationTextX) || undefined, // Text starting X
+        continuationTextY: Number(userPdfSettings?.Table.continuationTextY) || 10, //Text starting Y
+        continuationFontSize: Number(userPdfSettings?.Table.continuationFontSize) || 15, // text font size
+        continuationFillerHeight: Number(userPdfSettings?.Table.continuationFillerHeight) || 20, // this is the hight that will be left by the table
+        continuationText: userPdfSettings?.Table.continuationText || 'Continues on Next Page',
     };
 
     //HEADER SETTINGS
@@ -138,7 +145,9 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
         ...subHeadingSetting,
     };
 
-    await drawTable(pdfSettings);
+    const tbl = await drawTable(pdfSettings);
+
+    console.log(tbl);
   
     const pdfBytes = await pdfDoc.save()
   

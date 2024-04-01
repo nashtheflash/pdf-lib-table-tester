@@ -111,6 +111,12 @@ const tableDefs = {
   dividedXThickness: {type: 'number'},
   dividedYThickness: {type: 'number'},
 
+  continuationFont: {type: 'string', options: fontOptions, defaultOption: 0}, // Text font
+  continuationTextX: {type: 'number'}, // Text starting X
+  continuationTextY: {type: 'number'}, //Text starting Y
+  continuationFontSize: {type: 'number'}, // text font size
+  continuationFillerHeight: {type: 'number'}, // this is the hight that will be left by the table
+  continuationText: {type: 'text'},
 }
 
 

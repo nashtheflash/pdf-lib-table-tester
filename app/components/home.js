@@ -30,9 +30,8 @@ export function HomeLayout({  }) {
   }, [userPdfSettings])
   
   // useEffect(() => {
-  //     createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl })
-  
-  // }, [])
+  //   console.log(userPdfSettings);
+  // }, [userPdfSettings])
 
   return (
     <div className='bg-base-200 min-h-screen'>
@@ -101,6 +100,14 @@ const tableSettings = {
   dividedYColor: undefined, // Default rgb(0,0,0) - can pass in any pdf-lib rgb value
   dividedXThickness: 1, // Default 1 - sets x divider thickness
   dividedYThickness: 1, // Default 1 - sets y divider thickness
+
+  //Continuation
+  continuationFont: StandardFonts.TimesRomanBold, // Text font
+  continuationTextX: '', // Text starting X
+  continuationTextY: 10, //Text starting Y
+  continuationFontSize: 15, // text font size
+  continuationFillerHeight: 20, // this is the hight that will be left by the table
+  continuationText: 'Continues on Next Page',
 };
 
 //HEADER SETTINGS
