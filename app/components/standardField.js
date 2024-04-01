@@ -4,7 +4,7 @@ export function StandardField({field, fieldDef, userPdfSettings, setUserPdfSetti
         <>
             <label
                 htmlFor="name"
-                className="absolute select-none -top-2 left-2 inline-block bg-base-100 px-1 text-xs font-medium text-gray-900"
+                className="absolute select-none -top-2 left-2 inline-block bg-base-100 px-1 text-xs font-medium text-secondary"
             >
                 {field}
             </label>
@@ -12,7 +12,7 @@ export function StandardField({field, fieldDef, userPdfSettings, setUserPdfSetti
                 type={fieldDef.type}
                 name="name"
                 id="name"
-                className="block w-full rounded-md border-0 py-1.5 bg-base-100 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+                className="input appearance-none input-bordered input-secondary input-sm w-full max-w-xs"
                 onChange={(e) => handleFieldChange(e.target.value, field, setUserPdfSettings, section, userPdfSettings)}
                 placeholder={userPdfSettings[section][field] === 0 ? 0 :'Auto'}
                 value={userPdfSettings[section][field] === 0 ? 0 : userPdfSettings[section][field]}
@@ -36,15 +36,6 @@ const handleFieldChange = (value, field, setUserPdfSettings, section, userPdfSet
         );
 
     } 
-    // else if(field === 'headerTextSize') {
-    //     setUserPdfSettings((prevState) => ({
-    //         ...prevState,
-    //         [section]: {...prevState[section], [field]: value},
-    //         Header: {...prevState.Cell, headerLineHeight: Math.max(prevState.Cell.headerLineHeight, value)}
-    //       })
-    //     );
-
-    // } 
     else {
         setUserPdfSettings((prevState) => ({
             ...prevState,

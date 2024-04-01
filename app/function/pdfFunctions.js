@@ -88,6 +88,10 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
         continuationFontSize: Number(userPdfSettings?.Table.continuationFontSize) || 15, // text font size
         continuationFillerHeight: Number(userPdfSettings?.Table.continuationFillerHeight) || 20, // this is the hight that will be left by the table
         continuationText: userPdfSettings?.Table.continuationText || 'Continues on Next Page',
+
+        appendedPageStartX: Number(userPdfSettings?.Table.appendedPageStartX),
+        appendedPageStartY: Number(userPdfSettings?.Table.appendedPageStartY) || undefined,
+        appendedMaxTableWidth: Number(userPdfSettings?.Table.appendedMaxTableWidth) || undefined,
     };
 
     //HEADER SETTINGS

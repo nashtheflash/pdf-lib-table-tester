@@ -29,12 +29,12 @@ export function MultiSelect({field, fieldDef, userPdfSettings, setUserPdfSetting
     <Listbox value={selected} onChange={(index) => handelSelection(index)}>
       {({ open }) => (
         <>
-          <Listbox.Label className="absolute z-20 -top-2 left-2 inline-block bg-base-100 px-1 text-xs font-medium text-gray-900">{field}</Listbox.Label>
+          <Listbox.Label className="absolute z-20 -top-2 left-2 inline-block bg-base-100 px-1 text-xs font-medium text-secondary">{field}</Listbox.Label>
           <div className="relative mt-2">
-            <Listbox.Button className="relative w-full cursor-default rounded-md bg-base-100 py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 focus:outline-none focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6">
+            <Listbox.Button className="relative w-full cursor-default rounded-lg bg-base-100 py-[5px] pl-3 pr-10 text-left text-secondary shadow-sm ring-1 ring-inset ring-secondary focus:outline-none focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6">
               <span className="block truncate select-none">{selected.name}</span>
               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                <ChevronUpDownIcon className="h-5 w-5 text-secondary" aria-hidden="true" />
               </span>
             </Listbox.Button>
 
@@ -45,13 +45,13 @@ export function MultiSelect({field, fieldDef, userPdfSettings, setUserPdfSetting
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="absolute z-30 mt-1 max-h-60 w-full overflow-auto rounded-md bg-base-100 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+              <Listbox.Options className="absolute z-30 mt-1 max-h-60 w-full overflow-auto rounded-md bg-base-100 py-1 text-secondary shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                 {fieldDef.options.map((option) => (
                   <Listbox.Option
                     key={option.id}
                     className={({ active }) =>
                       classNames(
-                        active ? 'bg-primary text-white' : 'text-gray-900',
+                        active ? 'bg-primary text-white' : 'text-secondary',
                         'relative cursor-default select-none py-2 pl-3 pr-9'
                       )
                     }
@@ -66,7 +66,7 @@ export function MultiSelect({field, fieldDef, userPdfSettings, setUserPdfSetting
                         {selected ? (
                           <span
                             className={classNames(
-                              active ? 'text-white' : 'text-primary',
+                              active ? 'text-white' : 'text-secondary',
                               'absolute inset-y-0 right-0 flex items-center pr-4'
                             )}
                           >

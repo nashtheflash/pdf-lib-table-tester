@@ -6,22 +6,14 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   daisyui: {
-      themes: [
-        "retro"
-      ],
-    // {
-    //   mytheme: {
-    //   "primary": "#6f25ff",
-    //   "secondary": "#007d46",
-    //   "accent": "#006cff",
-    //   "neutral": "#000500",
-    //   "base-100": "#ffefec",
-    //   "info": "#00d4ff",
-    //   "success": "#5af975",
-    //   "warning": "#af4b00",
-    //   "error": "#ff8885",
-    //   },
-    // },
+    themes: [
+      "synthwave",
+      "dim",
+      "fantasy",
+      "wireframe"
+      // "pastel"
+      // "nord"
+    ],
   },
   theme: {
     extend: {
@@ -33,7 +25,8 @@ module.exports = {
     },
   },
   plugins: [
-    require('@tailwindcss/forms'),
+    //require('@tailwindcss/forms'),
     require("daisyui"),
+    require('tailwind-scrollbar')({ nocompatible: true, preferredStrategy: 'pseudoelements' }),
   ],
 };

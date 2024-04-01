@@ -1,75 +1,85 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import { FormFieldsLayout } from "./formFieldsLayout";
+import { FormFieldsLayout, CopyCode, NavBar, About} from ".";
 
-import { createPdf, createInitPdf } from "../function";
+import { createPdf } from "../function";
 
-
-
-
-import { PDFDocument, StandardFonts, degrees, rgb } from 'pdf-lib';
-// import { drawTable } from 'pdf-lib-table';
+import { StandardFonts, rgb } from 'pdf-lib';
 import { columnDefs } from '../definition';
 import { subHeadingDefs } from '../definition';
 import { tableData } from '../data';
 
 
+const pages = [
+  {name: 'Single Page', current: true},
+  {name: 'Multi Page', current: false},
+  {name: 'Fitting Templates', current: false},
+  {name: 'Kitchen Sink', current: false},
+  {name: 'About', current: false},
+];
 
 
 
 export function HomeLayout({  }) {
   const [pdfUrl, setPdfUrl] = useState();
   const [userPdfSettings, setUserPdfSettings] = useState(pdfSettings);
-    
+  const [isPro, setIsPro] = useState(true);
+  const [nav, setNav] = useState(pages);
     
   useEffect(() => {
-      
     createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl });
-      
-  }, [userPdfSettings])
-  
-  // useEffect(() => {
-  //   console.log(userPdfSettings);
-  // }, [userPdfSettings])
+  }, [userPdfSettings]);
 
   return (
-    <div className='bg-base-200 min-h-screen'>
-      <div className='grid grid-cols-4 justify-center'>
-        <div className='col-span-1'>
-          <div className='sticky top-0 px-4 pt-5'>
+    <div className='bg-base-200'>
+      <div className='grid grid-cols-4 h-screen justify-center'>
+
+
+      {/* <div class="scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-slate-700 scrollbar-track-slate-300 overflow-y-scroll"> */}
+        <div className='col-span-1 h-full scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-primary scrollbar-track-slate-300 scrollbar-w-2 overflow-y-auto overflow-x-hidden'>
+          <div className='sticky top-0 px-2 pt-5'>
             <h1 className="text-primary">PDF-LIB-TABLE</h1>
             <div className="flex flex-col w-full">
               <div className="divider divider-primary mt-0"></div>
             </div>
+            <CopyCode
+              isPro={isPro}
+              setIsPro={setIsPro}
+            />
             <FormFieldsLayout
               userPdfSettings={userPdfSettings}
               setUserPdfSettings={setUserPdfSettings}
-              //pdfSettings={pdfSettings}
             />
-            </div>
           </div>
-        <div className='col-span-3 h-screen'>
-        <div className="navbar bg-base-200">
-          <a className="btn btn-ghost text-xl text-primary">Example 1</a>
-          <a className="btn btn-ghost text-xl text-primary">Example 2</a>
-          <a className="btn btn-ghost text-xl text-primary">Example 3</a>
-          <a className="btn btn-ghost text-xl text-primary">Example 4</a>
         </div>
-          { !pdfUrl ? 
-            <div className="flex flex-col h-full w-full p-5 justify-center items-center">
+
+      {/* </div> */}
+
+        <div className='col-span-3 h-full overflow-y-hidden'>
+          <div className="h-16">
+            <NavBar
+              nav={nav}
+              setNav={setNav}
+            />
+          </div>
+          <div className="w-full px-2 pb-3 h-[calc(100vh-64px)]">
+            { !pdfUrl ? 
               <div className="skeleton w-full h-full"></div>
-            </div> 
-            :
-            <iframe
-            id="inlineFrameExample"
-            title="Inline Frame Example"
-            width="100%"
-            height="100%"
-            src={pdfUrl}
-            >
-          </iframe>
-          }
+              :
+              nav[4].current ? 
+              <About/>
+              :
+              <iframe
+                id="inlineFrameExample"
+                title="Inline Frame Example"
+                width="100%"
+                height="100%"
+                src={pdfUrl}
+              >
+              </iframe>
+            }
+          </div> 
         </div>
       </div>
     </div>
@@ -108,6 +118,11 @@ const tableSettings = {
   continuationFontSize: 15, // text font size
   continuationFillerHeight: 20, // this is the hight that will be left by the table
   continuationText: 'Continues on Next Page',
+
+  //Appended pages
+  appendedPageStartX: 0,
+  appendedPageStartY: 612,
+  appendedMaxTableWidth: 792,
 };
 
 //HEADER SETTINGS

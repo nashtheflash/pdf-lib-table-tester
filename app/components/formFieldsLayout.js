@@ -1,17 +1,34 @@
-import { PDFDocument, StandardFonts, degrees, rgb, cmyk } from 'pdf-lib';
+'use client';
 
+import { rgb } from 'pdf-lib';
+import { useState } from 'react';
 import { StandardField, MultiSelect } from "./";
-import { Row } from 'pdf-lib-table/classes';
 
 export function FormFieldsLayout({userPdfSettings, setUserPdfSettings}) {
+  const [openSections, setopenSection] = useState(false);
+
+  const handelAccordianClick = (e, section) => {
+    setopenSection((prevState) => {
+      if(prevState === section) return false;
+      return section;
+    });
+  };
 
   return (
     <>
       {
         Object.keys(userPdfSettings).map((section) => {
           return (
-            <div key={section} className="collapse collapse-arrow bg-base-100 mb-2">
-              <input type="radio" name="my-accordion-2" className="w-full" /> 
+            <form key={section} className="collapse collapse-arrow bg-base-100 mb-2">
+              <input 
+                type="radio"
+                // ref={e => accodianRef.current[section] = {element: e, open: false} } 
+                onClick={(e) => handelAccordianClick(e, section)} 
+                onChange={() => ''}
+                name="my-accordion-2" 
+                className="w-full"
+                checked={openSections === section ? true : false}
+              /> 
               <div className="collapse-title text-xl font-medium text-primary">
                 {section}
               </div>
@@ -22,7 +39,7 @@ export function FormFieldsLayout({userPdfSettings, setUserPdfSettings}) {
                   section={section}
                 />
               </div>
-            </div>
+            </form>
           )
         })
       }
@@ -117,6 +134,10 @@ const tableDefs = {
   continuationFontSize: {type: 'number'}, // text font size
   continuationFillerHeight: {type: 'number'}, // this is the hight that will be left by the table
   continuationText: {type: 'text'},
+
+  appendedPageStartX: {type: 'number'},
+  appendedPageStartY: {type: 'number'},
+  appendedMaxTableWidth: {type: 'number'},
 }
 
 
@@ -156,12 +177,6 @@ const cellDefs = {
   cellTextColor: {type: 'string', options: colorOptions, defaultOption: 0},
   cellPaddingBottom: {type: 'number'},
 }
-
-
-
-
-
-
 
 const fieldDefs = {
   //TABLE
