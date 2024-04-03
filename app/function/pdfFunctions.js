@@ -126,13 +126,14 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
     
     //CELL SETTINGS
     const cellSettings = {
-        cellHeight: Number(userPdfSettings?.Cell.cellHeight) || undefined,
-        cellBackgroundColor: userPdfSettings?.Cell.cellBackgroundColor,
         cellFont: fontLookup[userPdfSettings?.Cell.cellFont] || fontLookup.TimesRoman, //Required
         cellTextSize: Number(userPdfSettings?.Cell.cellTextSize) || 10,
         cellLineHeight: Number(userPdfSettings?.Cell.cellTextSize) || 10,
         cellTextColor: userPdfSettings?.Cell.cellTextColor,
-        cellPaddingBottom: Number(userPdfSettings?.Cell.cellPaddingBottom) || 0,
+        additionalWrapCharacters: userPdfSettings?.Cell.additionalWrapCharacters,
+        //cellHeight: Number(userPdfSettings?.Cell.cellHeight) || undefined,
+        //cellBackgroundColor: userPdfSettings?.Cell.cellBackgroundColor,
+        //cellPaddingBottom: Number(userPdfSettings?.Cell.cellPaddingBottom) || 0,
     };
     
     //SUBHEADING SETTINGS
@@ -151,7 +152,7 @@ export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl
 
     const tbl = await drawTable(pdfSettings);
 
-    console.log(tbl);
+    //console.log(tbl);
   
     const pdfBytes = await pdfDoc.save()
   

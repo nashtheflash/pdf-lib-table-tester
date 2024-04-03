@@ -163,19 +163,20 @@ const headerDefs = {
 }
 
 const rowDefs = {
-  rowBackgroundColor: {type: 'string', options: colorOptions, defaultOption: 0},
+  rowBackgroundColor: {type: 'string', options: colorOptions, defaultOption: 1},
   alternateRowColor: {type: 'string', options: trueFalse, defaultOption: 0},
   alternateRowColorValue: {type: 'string', options: colorOptions, defaultOption: 0},
 }
 
 const cellDefs = {
-  //cellHeight: {type: 'number'},
-  //cellBackgroundColor: {type: 'string', options: colorOptions, defaultOption: 0},
-  cellFont: {type: 'string', options: fontOptions, defaultOption: 0}, //Required
+  cellFont: {type: 'string', options: fontOptions, defaultOption: 8}, //Required
   cellTextSize: {type: 'number'},
   cellLineHeight: {type: 'number'},
-  cellTextColor: {type: 'string', options: colorOptions, defaultOption: 0},
-  cellPaddingBottom: {type: 'number'},
+  cellTextColor: {type: 'string', options: colorOptions, defaultOption: 8},
+  //additionalWrapCharacters,
+  //cellHeight: {type: 'number'},
+  //cellBackgroundColor: {type: 'string', options: colorOptions, defaultOption: 0},
+  // cellPaddingBottom: {type: 'number'},
 }
 
 const fieldDefs = {
