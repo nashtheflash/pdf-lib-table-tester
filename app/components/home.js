@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import { FormFieldsLayout, CopyCode, NavBar, About} from ".";
+import { FormFieldsLayout, CopyCode, NavBar} from ".";
+import { About, Pro } from "./pages";
 
 import { createPdf } from "../function";
 
@@ -14,8 +15,8 @@ import { tableData } from '../data';
 const pages = [
   {name: 'Single Page', current: true},
   {name: 'Multi Page', current: false},
-  {name: 'Fitting Templates', current: false},
-  {name: 'Kitchen Sink', current: false},
+  {name: 'Horizontal', current: false},
+  {name: 'Invoice', current: false},
   {name: 'About', current: false},
   {name: 'Pro', current: false},
 ];
@@ -36,9 +37,6 @@ export function HomeLayout({  }) {
   return (
     <div className='bg-base-200'>
       <div className='grid grid-cols-4 h-screen justify-center'>
-
-
-      {/* <div class="scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-slate-700 scrollbar-track-slate-300 overflow-y-scroll"> */}
         <div className='col-span-1 h-full scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-primary scrollbar-track-slate-300 scrollbar-w-2 overflow-y-auto overflow-x-hidden'>
           <div className='sticky top-0 px-2 pt-5'>
             <h1 className="text-primary">PDF-LIB-TABLE</h1>
@@ -56,9 +54,6 @@ export function HomeLayout({  }) {
             />
           </div>
         </div>
-
-      {/* </div> */}
-
         <div className='col-span-3 h-full overflow-y-hidden'>
           <div className="h-16">
             <NavBar
@@ -67,12 +62,10 @@ export function HomeLayout({  }) {
             />
           </div>
           <div className="w-full px-2 pb-3 h-[calc(100vh-64px)]">
-            { !pdfUrl ? 
-              <div className="skeleton w-full h-full"></div>
-              :
-              nav[4].current ? 
-              <About/>
-              :
+            { 
+            !pdfUrl ? <div className="skeleton w-full h-full"></div> :
+            nav[4].current ? <About isPro={isPro} setIsPro={setIsPro} userPdfSettings={userPdfSettings}/> :
+            nav[5].current ? <Pro/> :
               <iframe
                 id="inlineFrameExample"
                 title="Inline Frame Example"
@@ -88,7 +81,6 @@ export function HomeLayout({  }) {
     </div>
   );
 };
-
 
 //TABLE SETTINGS
 const tableSettings = {
