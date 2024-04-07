@@ -1,15 +1,17 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import { FormFieldsLayout, CopyCode, NavBar} from ".";
+import { FormFieldsLayout, CopyCode, NavBar, TableIframe} from ".";
 import { About, Pro } from "./pages";
 
-import { createPdf } from "../function";
+import { createPdf, Doc } from "../function";
 
 import { StandardFonts, rgb } from 'pdf-lib';
 import { columnDefs } from '../definition';
 import { subHeadingDefs } from '../definition';
 import { tableData } from '../data';
+import { SinglePage } from "../function";
+
 
 
 const pages = [
@@ -31,7 +33,17 @@ export function HomeLayout({  }) {
   const [pdfUrl, setPdfUrl] = useState();
     
   useEffect(() => {
+
     createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl });
+
+    const document = new Doc();
+    
+    const pg = new SinglePage()
+    
+    document.type = pg;
+    document.draw();
+
+    // createDoc({ userPdfSettings, setUserPdfSettings, setPdfUrl });
   }, [userPdfSettings]);
 
   return (
@@ -66,14 +78,7 @@ export function HomeLayout({  }) {
             !pdfUrl ? <div className="skeleton w-full h-full"></div> :
             nav[4].current ? <About isPro={isPro} setIsPro={setIsPro} userPdfSettings={userPdfSettings}/> :
             nav[5].current ? <Pro/> :
-              <iframe
-                id="inlineFrameExample"
-                title="Inline Frame Example"
-                width="100%"
-                height="100%"
-                src={pdfUrl}
-              >
-              </iframe>
+            <TableIframe url={pdfUrl}/>
             }
           </div> 
         </div>

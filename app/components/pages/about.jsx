@@ -97,9 +97,11 @@ function HowTo({ isPro, setIsPro, userPdfSettings }) {
                                 }, "1000")
                             }
                             >
-                            <ChevronRightIcon className="h-4 w-4"/>
-                                {coppied ? 'Coppied!!' : 'npm i pdf-lib-table'}
-                            <DocumentDuplicateIcon className="h-4 w-4"/>
+                            <div className="flex justify-between w-full text-primary">
+                                <ChevronRightIcon className="h-4 w-4"/>
+                                    {coppied ? 'Coppied!!' : 'npm i pdf-lib-table'}
+                                <DocumentDuplicateIcon className="h-4 w-4"/>
+                            </div>
                         </button>
                     </div>
                     <h5 className="basis-3/6 text-xs">Copy the command to the right to install</h5>
