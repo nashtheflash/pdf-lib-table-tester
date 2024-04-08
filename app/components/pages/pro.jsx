@@ -1,8 +1,12 @@
+import { PaymentWrapper } from '../';
 import { CheckIcon } from '@heroicons/react/24/solid';
 
 export function Pro() {
+
+    const cart = [{price: 'price_1P3O5FD237q7PsOHCG7lLMFC', quantity: 1,}]
+
     return (
-        <div className='flex basis-1/4 justify-between items-center text-primary'>
+        <div className='flex basis-1/4 justify-between items-start gap-2 text-primary h-full'>
             <div className="card w-full bg-base-100 shadow-xl">
                 <div className="card-body">
                     <h2 className="card-title">Need to go Pro?</h2>
@@ -50,8 +54,11 @@ export function Pro() {
                     </div>
                 </div>
             </div>
-            <div className="basis-3/4">
-                <h1> payments</h1>
+            <div className="basis-3/4 h-full w-full scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-primary scrollbar-track-slate-300 scrollbar-w-2 overflow-auto">
+                <PaymentWrapper 
+                    provider={'stripe'}
+                    products={cart}
+                />
             </div>
         </div>
     )

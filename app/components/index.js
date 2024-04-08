@@ -7,3 +7,5 @@ export {CopyConfigButton} from './copyConfigButton'
 export {NavBar} from './navbar'
 export {ToggleTheme} from './toggleTheme'
 export {TableIframe} from './tableIframe'
+export {StripePayment} from './stripe'
+export { PaymentWrapper } from './payment';
