@@ -2,15 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { FormFieldsLayout, CopyCode, NavBar, TableIframe} from ".";
-import { About, Pro } from "./pages";
+import { About, Pro, SinglePageExample, MultiPageExample } from "./pages";
 
-import { createPdf, Doc } from "../function";
+import { createPdf, Doc, SinglePage, MultiPage} from "../function";
 
 import { StandardFonts, rgb } from 'pdf-lib';
 import { columnDefs } from '../definition';
 import { subHeadingDefs } from '../definition';
 import { tableData } from '../data';
-import { SinglePage } from "../function";
 
 
 
@@ -28,23 +27,25 @@ const pages = [
 export function HomeLayout({  }) {
   const [nav, setNav] = useState(pages);
   const [isPro, setIsPro] = useState(true);
-
   const [userPdfSettings, setUserPdfSettings] = useState(pdfSettings);
   const [pdfUrl, setPdfUrl] = useState();
     
   useEffect(() => {
+    const document = new Doc();
+    nav[0].current ? document.type = new SinglePage() : document.type = new MultiPage();
+    const data = document.data();
 
-    createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl });
+    if(pdfUrl) createPdf({ data, userPdfSettings, setUserPdfSettings, setPdfUrl });
+
+  }, [userPdfSettings]);
+  
+  useEffect(() => { //TODO: move to server?
 
     const document = new Doc();
-    
-    const pg = new SinglePage()
-    
-    document.type = pg;
-    document.draw();
+    document.type = new SinglePage();
+    document.draw({ userPdfSettings, setUserPdfSettings, setPdfUrl });
 
-    // createDoc({ userPdfSettings, setUserPdfSettings, setPdfUrl });
-  }, [userPdfSettings]);
+  }, []);
 
   return (
     <div className='bg-base-200'>
@@ -76,6 +77,8 @@ export function HomeLayout({  }) {
           <div className="w-full px-2 pb-3 h-[calc(100vh-64px)]">
             { 
             !pdfUrl ? <div className="skeleton w-full h-full"></div> :
+            nav[0].current ? <SinglePageExample userPdfSettings={userPdfSettings} setUserPdfSettings={setUserPdfSettings} pdfUrl={pdfUrl} setPdfUrl={setPdfUrl}/> :
+            nav[1].current ? <MultiPageExample userPdfSettings={userPdfSettings} setUserPdfSettings={setUserPdfSettings} pdfUrl={pdfUrl} setPdfUrl={setPdfUrl}/> :
             nav[4].current ? <About isPro={isPro} setIsPro={setIsPro} userPdfSettings={userPdfSettings}/> :
             nav[5].current ? <Pro/> :
             <TableIframe url={pdfUrl}/>

@@ -1,13 +1,13 @@
 import { faker } from '@faker-js/faker';
-import { singlePageTableSettings } from './exampleSettings';
+import { multiPageTableSettings } from './exampleSettings';
 
-export class SinglePage {
+export class MultiPage {
   constructor() {
 
   }
 
   tableSettings({ data, columns, page, pdfDoc, primaryFont, secondaryFont }) {
-    return singlePageTableSettings({ data, columns, page, pdfDoc, primaryFont, secondaryFont });
+    return multiPageTableSettings({ data, columns, page, pdfDoc, primaryFont, secondaryFont });
   }
 
   get columnDefs() {
@@ -47,18 +47,18 @@ export class SinglePage {
     
     get data() {
 
-          const dataTemplate = () => ({
-              serial: faker.commerce.isbn(10),
-              product: faker.commerce.product(),
-              description: faker.commerce.productDescription(),
-              department: faker.commerce.department(),
-              price: faker.commerce.price(),
-          });
+        const dataTemplate = () => ({
+            serial: faker.commerce.isbn(10),
+            product: faker.commerce.product(),
+            description: faker.commerce.productDescription(),
+            department: faker.commerce.department(),
+            price: faker.commerce.price(),
+        });
 
-          const data = faker.helpers.multiple(dataTemplate, {
-              count: 5,
-          });
+        const data = faker.helpers.multiple(dataTemplate, {
+            count: 80,
+        });
 
-          return data;
-      }
+        return data;
+    }
 }

@@ -6,12 +6,11 @@ import { columnDefs } from '../definition';
 import { subHeadingDefs } from '../definition';
 import { tableData } from '../data';
 
-export async function createPdf({ userPdfSettings, setUserPdfSettings, setPdfUrl}) {
+export async function createPdf({ data, userPdfSettings, setUserPdfSettings, setPdfUrl }) {
 
 
     const pdfDoc = await PDFDocument.create();
     const page = pdfDoc.addPage([792.0, 612.0]);
-    const data = await tableData();
     
     //add fonts to the doc
     const [
