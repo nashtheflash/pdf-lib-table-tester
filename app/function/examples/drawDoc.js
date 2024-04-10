@@ -1,6 +1,6 @@
 import { PDFDocument, StandardFonts, degrees, rgb } from 'pdf-lib';
 import { drawTable } from 'pdf-lib-table';
-import { columnDefs, subHeadingDefs } from '../../definition';
+import { columnDefs, subheadingColumnDefs } from '../../definition';
 //import { tableData } from '../data';
 import { singlePageTableSettings } from './exampleSettings';
 
@@ -26,7 +26,7 @@ export class Doc {
         const page = pdfDoc.addPage([792.0, 612.0]);
         const data = await this._example.data;
 
-        console.log(data)
+        //console.log(data)
 
         //add fonts to the doc
         const [

@@ -1,5 +1,5 @@
 import { StandardFonts, rgb } from 'pdf-lib';
-import { subHeadingDefs } from '@/app/definition';
+import { subheadingColumnDefs } from '@/app/definition';
 
 export const multiPageTableSettings = ({data, columns, page, pdfDoc, primaryFont, secondaryFont }) => {
     
@@ -79,7 +79,7 @@ export const multiPageTableSettings = ({data, columns, page, pdfDoc, primaryFont
 
     //SUBHEADING SETTINGS
     const subHeadingSetting = {
-        subHeadings: subHeadingDefs,
+        subHeadings: subheadingColumnDefs,
     };
 
 

@@ -1,2 +1,2 @@
-export {columnDefs} from './columnDefs'
-export {subHeadingDefs} from './subheadingDefs'
+export {columnDefs} from './columnDefs';
+export {subheadingColumnDefs} from './subheadingDefs';

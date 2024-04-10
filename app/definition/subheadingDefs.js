@@ -1,22 +1,16 @@
-export const subHeadingDefs = {
-    sub1: [
-      {
-        subHeadingId:'sectionLabel',
-        startingX: 20
-      },
-      {
-        subHeadingId:'sectionCount',
-        startingX: 50
-      },
-    ],
-    sub2: [
-      {
-        subHeadingId:'sectionLabel',
-        startingX: 20
-      },
-      {
-        subHeadingId:'sectionTotal',
-        startingX: 50
-      },
-    ]
+export const subheadingColumnDefs = [
+  {
+    parentId:'product', // this is the column that the subheader will line up with
+    columnId:'type', 
+    header: 'Type',
+    type: 'text', //text/number/currency
+    wrapText: true, //optional
+  },
+  {
+    parentId: 'price', // this is thcolumn that the subheader will line up with
+    columnId:'total',
+    header: 'Total',
+    type: 'number', //text/number/currency
+    wrapText: true, //optional
   }
+]

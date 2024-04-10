@@ -8,7 +8,7 @@ import { createPdf, Doc, SinglePage, MultiPage} from "../function";
 
 import { StandardFonts, rgb } from 'pdf-lib';
 import { columnDefs } from '../definition';
-import { subHeadingDefs } from '../definition';
+import { subheadingColumnDefs } from '../definition';
 import { tableData } from '../data';
 
 
@@ -144,7 +144,7 @@ const headerSettings = {
 
 //SUBHEADING SETTINGS
 const subHeadingSetting = {
-  subHeadings: subHeadingDefs,
+  subHeadings: subheadingColumnDefs,
 };
 
 //ROW SECTION

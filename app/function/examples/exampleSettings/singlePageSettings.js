@@ -1,5 +1,5 @@
 import { PDFDocument, StandardFonts, degrees, rgb } from 'pdf-lib';
-import { subHeadingDefs } from '@/app/definition';
+import { subheadingColumnDefs } from '@/app/definition';
 
 export const singlePageTableSettings = ({data, columns, page, pdfDoc, primaryFont, secondaryFont }) => {
     
@@ -24,6 +24,7 @@ export const singlePageTableSettings = ({data, columns, page, pdfDoc, primaryFon
         dividedYColor: undefined, // Default rgb(0,0,0) - can pass in any pdf-lib rgb value
         dividedXThickness: 1, // Default 1 - sets x divider thickness
         dividedYThickness: 1, // Default 1 - sets y divider thickness
+        subheadingColumns: subheadingColumnDefs,
 
         //Continuation
         continuationFont: secondaryFont, // Text font
@@ -79,7 +80,7 @@ export const singlePageTableSettings = ({data, columns, page, pdfDoc, primaryFon
 
     //SUBHEADING SETTINGS
     const subHeadingSetting = {
-        subHeadings: subHeadingDefs,
+        subHeadings: subheadingColumnDefs,
     };
 
 

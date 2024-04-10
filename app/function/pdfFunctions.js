@@ -3,7 +3,7 @@
 import { PDFDocument, StandardFonts, degrees, rgb } from 'pdf-lib';
 import { drawTable } from 'pdf-lib-table';
 import { columnDefs } from '../definition';
-import { subHeadingDefs } from '../definition';
+import { subheadingColumnDefs } from '../definition';
 import { tableData } from '../data';
 
 export async function createPdf({ data, userPdfSettings, setUserPdfSettings, setPdfUrl }) {
@@ -79,7 +79,8 @@ export async function createPdf({ data, userPdfSettings, setUserPdfSettings, set
         dividedYColor: userPdfSettings?.Table.dividedYColor, // Default rgb(0,0,0) - can pass in any pdf-lib rgb value
         dividedXThickness: Number(userPdfSettings?.Table.dividedXThickness) || 1, // Default 1 - sets x divider thickness
         dividedYThickness: Number(userPdfSettings?.Table.dividedYThickness) || 1, // Default 1 - sets y divider thickness
-
+        //Subheadings
+        subheadingColumns: subheadingColumnDefs,
         //Continuation
         continuationFont: userPdfSettings?.Table.continuationFontSize, // Text font
         continuationTextX: Number(userPdfSettings?.Table.continuationTextX) || undefined, // Text starting X
@@ -137,7 +138,7 @@ export async function createPdf({ data, userPdfSettings, setUserPdfSettings, set
     
     //SUBHEADING SETTINGS
     const subHeadingSetting = {
-        subHeadings: subHeadingDefs,
+        subHeadings: subheadingColumnDefs,
     };
     
     
