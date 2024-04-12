@@ -138,7 +138,21 @@ export async function createPdf({ data, userPdfSettings, setUserPdfSettings, set
     
     //SUBHEADING SETTINGS
     const subHeadingSetting = {
-        subHeadings: subheadingColumnDefs,
+        // subHeadings: subheadingColumnDefs,
+        //SUB HEADINGS
+        // subheadingColumns,
+        subHeadingBackgroundColor: userPdfSettings?.Subheader.subHeadingBackgroundColor,
+        subHeadingHeight: Number(userPdfSettings?.Subheader.subHeadingHeight) || 12,
+        subHeadingFont: fontLookup[userPdfSettings?.Subheader.subHeadingFont] || fontLookup.TimesRoman,
+        subHeadingTextColor: userPdfSettings?.Subheader.subHeadingTextColor,
+        subHeadingTextSize: Number(userPdfSettings?.Subheader.subHeadingTextSize) || 1,
+        subHeadingLineHeight: Number(userPdfSettings?.Subheader.subHeadingLineHeight) || 10,
+        subHeadingDividedX: userPdfSettings?.Subheader.subHeadingDividedX,
+        subHeadingDividedXThickness: Number(userPdfSettings?.Subheader.subHeadingDividedXThickness) || 1,
+        subHeadingDividedXColor: userPdfSettings?.Subheader.subHeadingDividedXColor,
+        subHeadingDividedY: userPdfSettings?.Subheader.subHeadingDividedY,
+        subHeadingDividedYThickness: Number(userPdfSettings?.Subheader.subHeadingDividedYThickness) || 1,
+        subHeadingDividedYColor: userPdfSettings?.Subheader.subHeadingDividedYColor,
     };
     
     

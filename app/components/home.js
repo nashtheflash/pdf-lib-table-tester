@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { FormFieldsLayout, CopyCode, NavBar, TableIframe} from ".";
-import { About, Pro, SinglePageExample, MultiPageExample } from "./pages";
+import { About, Pro, SinglePageExample, MultiPageExample, SubheadingExample } from "./pages";
 
-import { createPdf, Doc, SinglePage, MultiPage} from "../function";
+import { createPdf, Doc, SinglePage, MultiPage, Subheading} from "../function";
 
 import { StandardFonts, rgb } from 'pdf-lib';
 import { columnDefs } from '../definition';
@@ -17,6 +17,7 @@ const pages = [
   {name: 'Single Page', current: true},
   {name: 'Multi Page', current: false},
   {name: 'Horizontal', current: false},
+  {name: 'Subheadings', current: false},
   {name: 'Invoice', current: false},
   {name: 'About', current: false},
   {name: 'Pro', current: false},
@@ -32,7 +33,11 @@ export function HomeLayout({  }) {
     
   useEffect(() => {
     const document = new Doc();
-    nav[0].current ? document.type = new SinglePage() : document.type = new MultiPage();
+    
+    if(nav[0].current) document.type = new SinglePage();
+    if(nav[1].current) document.type = new MultiPage();
+    if(nav[3].current) document.type = new Subheading();
+
     const data = document.data();
 
     if(pdfUrl) createPdf({ data, userPdfSettings, setUserPdfSettings, setPdfUrl });
@@ -79,6 +84,7 @@ export function HomeLayout({  }) {
             !pdfUrl ? <div className="skeleton w-full h-full"></div> :
             nav[0].current ? <SinglePageExample userPdfSettings={userPdfSettings} setUserPdfSettings={setUserPdfSettings} pdfUrl={pdfUrl} setPdfUrl={setPdfUrl}/> :
             nav[1].current ? <MultiPageExample userPdfSettings={userPdfSettings} setUserPdfSettings={setUserPdfSettings} pdfUrl={pdfUrl} setPdfUrl={setPdfUrl}/> :
+            nav[3].current ? <SubheadingExample userPdfSettings={userPdfSettings} setUserPdfSettings={setUserPdfSettings} pdfUrl={pdfUrl} setPdfUrl={setPdfUrl}/> :
             nav[4].current ? <About isPro={isPro} setIsPro={setIsPro} userPdfSettings={userPdfSettings}/> :
             nav[5].current ? <Pro/> :
             <TableIframe url={pdfUrl}/>
@@ -144,7 +150,21 @@ const headerSettings = {
 
 //SUBHEADING SETTINGS
 const subHeadingSetting = {
-  subHeadings: subheadingColumnDefs,
+  // subHeadings: subheadingColumnDefs,
+  //SUB HEADINGS
+  // subheadingColumns,
+  subHeadingBackgroundColor: rgb(0, 0, 0),
+  subHeadingHeight: 12,
+  subHeadingFont: 'TimesRomanBold',
+  subHeadingTextColor: rgb(0, 0, 0),
+  subHeadingTextSize: 10,
+  subHeadingLineHeight: 10,
+  subHeadingDividedX: true,
+  subHeadingDividedXThickness: 1,
+  subHeadingDividedXColor: rgb(0, 0, 0),
+  subHeadingDividedY: true,
+  subHeadingDividedYThickness: 1,
+  subHeadingDividedYColor: rgb(0, 0, 0),
 };
 
 //ROW SECTION

@@ -2,7 +2,7 @@ export function NavBar({ nav, setNav }) {
     
     const handelNav = (page) => {
         const state = [...nav];
-        const newState = state.map((nav) => nav.name === page.name ? {...nav, current: true} : {...nav, current: false})
+        const newState = state.map((nav) => nav.name === page.name ? {...nav, current: true} : {...nav, current: false});
 
         setNav(newState);
     };

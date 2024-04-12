@@ -79,7 +79,21 @@ export const multiPageTableSettings = ({data, columns, page, pdfDoc, primaryFont
 
     //SUBHEADING SETTINGS
     const subHeadingSetting = {
-        subHeadings: subheadingColumnDefs,
+        // subHeadings: subheadingColumnDefs,
+        //SUB HEADINGS
+        // subheadingColumns,
+        subHeadingBackgroundColor: rgb(0, 0, 0),
+        subHeadingHeight: 12,
+        subHeadingFont: 'TimesRomanBold',
+        subHeadingTextColor: rgb(0, 0, 0),
+        subHeadingTextSize: 10,
+        subHeadingLineHeight: 10,
+        subHeadingDividedX: true,
+        subHeadingDividedXThickness: 1,
+        subHeadingDividedXColor: rgb(0, 0, 0),
+        subHeadingDividedY: true,
+        subHeadingDividedYThickness: 1,
+        subHeadingDividedYColor: rgb(0, 0, 0),
     };
 
 

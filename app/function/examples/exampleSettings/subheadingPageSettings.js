@@ -1,7 +1,7 @@
 import { PDFDocument, StandardFonts, degrees, rgb } from 'pdf-lib';
 import { subheadingColumnDefs } from '@/app/definition';
 
-export const singlePageTableSettings = ({data, columns, page, pdfDoc, primaryFont, secondaryFont }) => {
+export const subheadingPageTableSettings = ({data, columns, page, pdfDoc, primaryFont, secondaryFont }) => {
     
     //TABLE SETTINGS
     const tableSettings = {
@@ -83,7 +83,7 @@ export const singlePageTableSettings = ({data, columns, page, pdfDoc, primaryFon
         // subHeadings: subheadingColumnDefs,
         //SUB HEADINGS
         // subheadingColumns,
-        subHeadingBackgroundColor: rgb(0, 0, 0),
+        subHeadingBackgroundColor: rgb(.21, .24, .85),
         subHeadingHeight: 12,
         subHeadingFont: secondaryFont,
         subHeadingTextColor: rgb(0, 0, 0),
@@ -95,7 +95,7 @@ export const singlePageTableSettings = ({data, columns, page, pdfDoc, primaryFon
         subHeadingDividedY: true,
         subHeadingDividedYThickness: 1,
         subHeadingDividedYColor: rgb(0, 0, 0),
-      };
+    };
 
 
     return {

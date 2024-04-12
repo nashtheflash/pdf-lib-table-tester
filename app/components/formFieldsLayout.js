@@ -179,6 +179,22 @@ const cellDefs = {
   // cellPaddingBottom: {type: 'number'},
 }
 
+
+const subheading = {
+  subHeadingBackgroundColor: {type: 'string', options: colorOptions, defaultOption: 2},
+  subHeadingHeight: {type: 'number'},
+  subHeadingFont: {type: 'string', options: fontOptions, defaultOption: 8},
+  subHeadingTextColor: {type: 'string', options: colorOptions, defaultOption: 8},
+  subHeadingTextSize: {type: 'number'},
+  subHeadingLineHeight: {type: 'number'},
+  subHeadingDividedX: {type: 'string', options: trueFalse, defaultOption: 0},
+  subHeadingDividedXThickness: {type: 'number'},
+  subHeadingDividedXColor: {type: 'string', options: colorOptions, defaultOption: 8},
+  subHeadingDividedY: {type: 'string', options: trueFalse, defaultOption: 0},
+  subHeadingDividedYThickness: {type: 'number'},
+  subHeadingDividedYColor: {type: 'string', options: colorOptions, defaultOption: 8},
+}
+
 const fieldDefs = {
   //TABLE
   ...tableDefs,
@@ -187,5 +203,7 @@ const fieldDefs = {
   //Row
   ...rowDefs,
   //CELLS
-  ...cellDefs
+  ...cellDefs,
+  //SUBHEADING
+  ...subheading
 };

@@ -87,7 +87,7 @@ export class Doc {
             ...pdfSettings.Header,
             ...pdfSettings.Row,
             ...pdfSettings.Cell,
-            ...pdfSettings.subHeadingSetting,
+            ...pdfSettings.Subheader,
         });
         
         const pdfBytes = await pdfDoc.save()
@@ -105,4 +105,4 @@ export class Doc {
     build() {
         return this;
     }
-}
+};
