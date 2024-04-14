@@ -3,6 +3,7 @@
 import { rgb } from 'pdf-lib';
 import { useState } from 'react';
 import { StandardField, MultiSelect } from "./";
+import { getPaidSettings } from '../lib/paidFeatures'
 
 export function FormFieldsLayout({userPdfSettings, setUserPdfSettings}) {
   const [openSections, setopenSection] = useState(false);

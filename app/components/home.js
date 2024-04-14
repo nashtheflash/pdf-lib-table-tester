@@ -85,8 +85,8 @@ export function HomeLayout({  }) {
             nav[0].current ? <SinglePageExample userPdfSettings={userPdfSettings} setUserPdfSettings={setUserPdfSettings} pdfUrl={pdfUrl} setPdfUrl={setPdfUrl}/> :
             nav[1].current ? <MultiPageExample userPdfSettings={userPdfSettings} setUserPdfSettings={setUserPdfSettings} pdfUrl={pdfUrl} setPdfUrl={setPdfUrl}/> :
             nav[3].current ? <SubheadingExample userPdfSettings={userPdfSettings} setUserPdfSettings={setUserPdfSettings} pdfUrl={pdfUrl} setPdfUrl={setPdfUrl}/> :
-            nav[4].current ? <About isPro={isPro} setIsPro={setIsPro} userPdfSettings={userPdfSettings}/> :
-            nav[5].current ? <Pro/> :
+            nav[5].current ? <About isPro={isPro} setIsPro={setIsPro} userPdfSettings={userPdfSettings}/> :
+            nav[6].current ? <Pro/> :
             <TableIframe url={pdfUrl}/>
             }
           </div> 

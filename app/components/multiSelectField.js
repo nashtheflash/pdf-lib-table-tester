@@ -2,7 +2,9 @@
 
 import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import { CheckIcon, ChevronUpDownIcon, SparklesIcon} from '@heroicons/react/20/solid'
+import { getPaidFeatures } from '../lib/paidFeatures';
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -29,7 +31,7 @@ export function MultiSelect({field, fieldDef, userPdfSettings, setUserPdfSetting
     <Listbox value={selected} onChange={(index) => handelSelection(index)}>
       {({ open }) => (
         <>
-          <Listbox.Label className="absolute z-20 -top-2 left-2 inline-block bg-base-100 px-1 text-xs font-medium text-secondary">{field}</Listbox.Label>
+          <FieldName field={field}/>
           <div className="relative mt-2">
             <Listbox.Button className="relative w-full cursor-default rounded-lg bg-base-100 py-[5px] pl-3 pr-10 text-left text-secondary shadow-sm ring-1 ring-inset ring-secondary focus:outline-none focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6">
               <span className="block truncate select-none">{selected.name}</span>
@@ -83,5 +85,25 @@ export function MultiSelect({field, fieldDef, userPdfSettings, setUserPdfSetting
         </>
       )}
     </Listbox>
+  )
+}
+
+
+function FieldName({ field }) {
+  const paidFeatures = getPaidFeatures();
+
+  return (
+    <>
+      {
+        paidFeatures.includes(field) ?
+          <Listbox.Label className="absolute z-20 -top-2 left-2 inline-block bg-base-100 px-1 text-xs font-medium text-secondary">
+            {field}
+            <SparklesIcon className={`absolute -top-1 -right-1 text-yellow-400 w-3 h-3`}/>
+          </Listbox.Label>
+          : 
+          <Listbox.Label className="absolute z-20 -top-2 left-2 inline-block bg-base-100 px-1 text-xs font-medium text-secondary">{field}</Listbox.Label>
+
+      }
+    </>
   )
 }
