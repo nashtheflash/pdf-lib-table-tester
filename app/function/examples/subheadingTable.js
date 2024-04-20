@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { subheadingPageTableSettings } from './exampleSettings';
+import { subheadingPageTableSettings } from '../../lib/subheadingPageSettings';
 
 export class Subheading {
     constructor() {

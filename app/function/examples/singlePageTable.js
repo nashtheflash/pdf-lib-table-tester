@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { singlePageTableSettings } from './exampleSettings';
+import { singlePageTableSettings } from '../../lib/singlePageSettings';
 
 export class SinglePage {
   constructor() {

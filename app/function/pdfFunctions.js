@@ -1,7 +1,7 @@
 //import { useState } from 'react';
 
 import { PDFDocument, StandardFonts, degrees, rgb } from 'pdf-lib';
-import { drawTable } from 'pdf-lib-table';
+import { drawTable, createPDFTables } from 'pdf-lib-table';
 import { columnDefs } from '../definition';
 import { subheadingColumnDefs } from '../definition';
 import { tableData } from '../data';
@@ -59,6 +59,7 @@ export async function createPdf({ data, userPdfSettings, setUserPdfSettings, set
     //TABLE SETTINGS
     const tableSettings = {
         data: data, //Required
+        page: page,
         columns: columnDefs,
         page, //Required
         pageOrientation: userPdfSettings?.Table.pageOrientation || 'protrate', //TODO: finish this
@@ -164,7 +165,25 @@ export async function createPdf({ data, userPdfSettings, setUserPdfSettings, set
         ...subHeadingSetting,
     };
 
-    const tbl = await drawTable(pdfSettings);
+    //const tbl = await drawTable(pdfSettings);
+    
+    const newDataFormat = data.map((data) => {
+        if(data.subheading) return {type: 'subheading', data: {...data.subheading}}
+        return {type: 'row', data: {...data}}
+    });
+    
+    const tables = await createPDFTables(
+        newDataFormat, // Required - No Default - data t be printed
+        page, // Required - No Default - page provided by pdf-lib
+        pdfDoc, // Required - No Default - pdfDoc that the table will be printed on
+        columnDefs, // Required - No Default - column definitions
+        StandardFonts, // fonts
+        rgb, // colors
+        {...pdfSettings}
+    );
+
+
+    tables.drawVerticalTables();
 
     //console.log(tbl);
   

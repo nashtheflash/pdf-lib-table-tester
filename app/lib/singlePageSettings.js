@@ -43,7 +43,7 @@ export const singlePageTableSettings = ({data, columns, page, pdfDoc, primaryFon
     const headerSettings = {
         //Header
         headerHeight: undefined,
-        headerBackgroundColor: undefined,
+        headerBackgroundColor: rgb(.03, .03, .03),
 
         headerFont: primaryFont,
         headerTextSize: 10,
@@ -64,9 +64,10 @@ export const singlePageTableSettings = ({data, columns, page, pdfDoc, primaryFon
 
     //ROW SECTION
     const rowSettings = {
-        rowBackgroundColor: undefined,
+        rowBackgroundColor: rgb(1, 1, 1),
         alternateRowColor: true,
-        alternateRowColorValue: undefined
+        // alternateRowColorValue: rgb(.03, .03, .03),
+        alternateRowColorValue: rgb(.21, .24, .85),
     };
 
     //CELL SETTINGS

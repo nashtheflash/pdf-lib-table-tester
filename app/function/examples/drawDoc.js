@@ -1,8 +1,5 @@
-import { PDFDocument, StandardFonts, degrees, rgb } from 'pdf-lib';
+import { PDFDocument, StandardFonts } from 'pdf-lib';
 import { drawTable } from 'pdf-lib-table';
-import { columnDefs, subheadingColumnDefs } from '../../definition';
-//import { tableData } from '../data';
-import { singlePageTableSettings } from './exampleSettings';
 
 export class Doc {
     constructor(example) {

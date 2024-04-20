@@ -1,4 +1,5 @@
-import { Doc, MultiPage } from "@/app/function"
+import { Doc } from "../../function/examples/drawDoc"
+import { MultiPage } from "../../function/examples/multiPageTable"
 import { TableIframe } from "../tableIframe"
 import { useEffect } from "react";
 

@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { multiPageTableSettings } from './exampleSettings';
+import { multiPageTableSettings } from '../../lib/multiPageSettings';
 
 export class MultiPage {
   constructor() {
