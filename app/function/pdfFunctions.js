@@ -141,7 +141,7 @@ export async function createPdf({ data, userPdfSettings, setUserPdfSettings, set
     const subHeadingSetting = {
         // subHeadings: subheadingColumnDefs,
         //SUB HEADINGS
-        // subheadingColumns,
+        subHeadingColumns: subheadingColumnDefs || [],
         subHeadingBackgroundColor: userPdfSettings?.Subheader.subHeadingBackgroundColor,
         subHeadingHeight: Number(userPdfSettings?.Subheader.subHeadingHeight) || 12,
         subHeadingFont: fontLookup[userPdfSettings?.Subheader.subHeadingFont] || fontLookup.TimesRoman,
@@ -154,6 +154,7 @@ export async function createPdf({ data, userPdfSettings, setUserPdfSettings, set
         subHeadingDividedY: userPdfSettings?.Subheader.subHeadingDividedY,
         subHeadingDividedYThickness: Number(userPdfSettings?.Subheader.subHeadingDividedYThickness) || 1,
         subHeadingDividedYColor: userPdfSettings?.Subheader.subHeadingDividedYColor,
+        subHeadingWrapText: true,
     };
     
     
@@ -171,7 +172,7 @@ export async function createPdf({ data, userPdfSettings, setUserPdfSettings, set
         if(data.subheading) return {type: 'subheading', data: {...data.subheading}}
         return {type: 'row', data: {...data}}
     });
-    
+   // console.log(subHeadingSetting); 
     const tables = await createPDFTables(
         newDataFormat, // Required - No Default - data t be printed
         page, // Required - No Default - page provided by pdf-lib
@@ -204,6 +205,5 @@ export async function createPdf({ data, userPdfSettings, setUserPdfSettings, set
   
     !userPdfSettings && setUserPdfSettings(stateSettings);
     setPdfUrl(docUrl);
-
     return pdfSettings
 };

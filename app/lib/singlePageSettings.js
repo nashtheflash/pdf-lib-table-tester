@@ -24,7 +24,7 @@ export const singlePageTableSettings = ({data, columns, page, pdfDoc, primaryFon
         dividedYColor: undefined, // Default rgb(0,0,0) - can pass in any pdf-lib rgb value
         dividedXThickness: 1, // Default 1 - sets x divider thickness
         dividedYThickness: 1, // Default 1 - sets y divider thickness
-        subheadingColumns: subheadingColumnDefs,
+        // subheadingColumns: subheadingColumnDefs,
 
         //Continuation
         continuationFont: secondaryFont, // Text font
@@ -66,7 +66,6 @@ export const singlePageTableSettings = ({data, columns, page, pdfDoc, primaryFon
     const rowSettings = {
         rowBackgroundColor: rgb(1, 1, 1),
         alternateRowColor: true,
-        // alternateRowColorValue: rgb(.03, .03, .03),
         alternateRowColorValue: rgb(.21, .24, .85),
     };
 
@@ -83,7 +82,7 @@ export const singlePageTableSettings = ({data, columns, page, pdfDoc, primaryFon
     const subHeadingSetting = {
         // subHeadings: subheadingColumnDefs,
         //SUB HEADINGS
-        // subheadingColumns,
+        subHeadingColumns: [],
         subHeadingBackgroundColor: rgb(0, 0, 0),
         subHeadingHeight: 12,
         subHeadingFont: secondaryFont,
@@ -96,6 +95,7 @@ export const singlePageTableSettings = ({data, columns, page, pdfDoc, primaryFon
         subHeadingDividedY: true,
         subHeadingDividedYThickness: 1,
         subHeadingDividedYColor: rgb(0, 0, 0),
+        subHeadingWrapText: true,
       };
 
 

@@ -42,7 +42,7 @@ export const multiPageTableSettings = ({data, columns, page, pdfDoc, primaryFont
     const headerSettings = {
         //Header
         headerHeight: undefined,
-        headerBackgroundColor: undefined,
+        headerBackgroundColor: rgb(.03, .03, .03),
 
         headerFont: primaryFont,
         headerTextSize: 10,
@@ -63,9 +63,9 @@ export const multiPageTableSettings = ({data, columns, page, pdfDoc, primaryFont
 
     //ROW SECTION
     const rowSettings = {
-        rowBackgroundColor: undefined,
+        rowBackgroundColor: rgb(1, 1, 1),
         alternateRowColor: true,
-        alternateRowColorValue: undefined
+        alternateRowColorValue: rgb(.21, .24, .85),
     };
 
     //CELL SETTINGS
@@ -94,6 +94,7 @@ export const multiPageTableSettings = ({data, columns, page, pdfDoc, primaryFont
         subHeadingDividedY: true,
         subHeadingDividedYThickness: 1,
         subHeadingDividedYColor: rgb(0, 0, 0),
+        subHeadingWrapText: true,
     };
 
 

@@ -2,7 +2,6 @@ import { PDFDocument, StandardFonts, degrees, rgb } from 'pdf-lib';
 import { subheadingColumnDefs } from '@/app/definition';
 
 export const subheadingPageTableSettings = ({data, columns, page, pdfDoc, primaryFont, secondaryFont }) => {
-    
     //TABLE SETTINGS
     const tableSettings = {
         data: data, //Required
@@ -24,7 +23,6 @@ export const subheadingPageTableSettings = ({data, columns, page, pdfDoc, primar
         dividedYColor: undefined, // Default rgb(0,0,0) - can pass in any pdf-lib rgb value
         dividedXThickness: 1, // Default 1 - sets x divider thickness
         dividedYThickness: 1, // Default 1 - sets y divider thickness
-        subheadingColumns: subheadingColumnDefs,
 
         //Continuation
         continuationFont: secondaryFont, // Text font
@@ -43,7 +41,7 @@ export const subheadingPageTableSettings = ({data, columns, page, pdfDoc, primar
     const headerSettings = {
         //Header
         headerHeight: undefined,
-        headerBackgroundColor: undefined,
+        headerBackgroundColor: rgb(.03, .03, .03),
 
         headerFont: primaryFont,
         headerTextSize: 10,
@@ -64,9 +62,9 @@ export const subheadingPageTableSettings = ({data, columns, page, pdfDoc, primar
 
     //ROW SECTION
     const rowSettings = {
-        rowBackgroundColor: undefined,
+        rowBackgroundColor: rgb(1, 1, 1),
         alternateRowColor: true,
-        alternateRowColorValue: undefined
+        alternateRowColorValue: rgb(.21, .24, .85),
     };
 
     //CELL SETTINGS
@@ -82,7 +80,7 @@ export const subheadingPageTableSettings = ({data, columns, page, pdfDoc, primar
     const subHeadingSetting = {
         // subHeadings: subheadingColumnDefs,
         //SUB HEADINGS
-        // subheadingColumns,
+        subHeadingColumns: subheadingColumnDefs,
         subHeadingBackgroundColor: rgb(.21, .24, .85),
         subHeadingHeight: 12,
         subHeadingFont: secondaryFont,
@@ -95,6 +93,7 @@ export const subheadingPageTableSettings = ({data, columns, page, pdfDoc, primar
         subHeadingDividedY: true,
         subHeadingDividedYThickness: 1,
         subHeadingDividedYColor: rgb(0, 0, 0),
+        subHeadingWrapText: true,
     };
 
 
