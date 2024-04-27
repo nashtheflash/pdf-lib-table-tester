@@ -79,13 +79,13 @@ export class Doc {
             secondaryFont: TimesRoman,
         });
     
-        const tbl = await drawTable({
-            ...pdfSettings.Table,
-            ...pdfSettings.Header,
-            ...pdfSettings.Row,
-            ...pdfSettings.Cell,
-            ...pdfSettings.Subheader,
-        });
+        // const tbl = await drawTable({
+        //     ...pdfSettings.Table,
+        //     ...pdfSettings.Header,
+        //     ...pdfSettings.Row,
+        //     ...pdfSettings.Cell,
+        //     ...pdfSettings.Subheader,
+        // });
         
         const pdfBytes = await pdfDoc.save()
         

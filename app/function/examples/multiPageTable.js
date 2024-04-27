@@ -56,7 +56,7 @@ export class MultiPage {
         });
 
         const data = faker.helpers.multiple(dataTemplate, {
-            count: 80,
+            count: 3000,
         });
 
         return data;

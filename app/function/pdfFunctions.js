@@ -1,7 +1,7 @@
 //import { useState } from 'react';
 
 import { PDFDocument, StandardFonts, degrees, rgb } from 'pdf-lib';
-import { drawTable, createPDFTables } from 'pdf-lib-table';
+import { createPDFTables } from 'pdf-lib-table';
 import { columnDefs } from '../definition';
 import { subheadingColumnDefs } from '../definition';
 import { tableData } from '../data';
@@ -83,11 +83,11 @@ export async function createPdf({ data, userPdfSettings, setUserPdfSettings, set
         //Subheadings
         subheadingColumns: subheadingColumnDefs,
         //Continuation
-        continuationFont: userPdfSettings?.Table.continuationFontSize, // Text font
+        continuationFont: userPdfSettings?.Table.continuationFont, // Text font
         continuationTextX: Number(userPdfSettings?.Table.continuationTextX) || undefined, // Text starting X
         continuationTextY: Number(userPdfSettings?.Table.continuationTextY) || 10, //Text starting Y
         continuationFontSize: Number(userPdfSettings?.Table.continuationFontSize) || 15, // text font size
-        continuationFillerHeight: Number(userPdfSettings?.Table.continuationFillerHeight) || 20, // this is the hight that will be left by the table
+        continuationFillerHeight: Number(userPdfSettings?.Table.continuationFillerHeight) || 30, // this is the hight that will be left by the table
         continuationText: userPdfSettings?.Table.continuationText || 'Continues on Next Page',
 
         appendedPageStartX: Number(userPdfSettings?.Table.appendedPageStartX),
@@ -166,13 +166,12 @@ export async function createPdf({ data, userPdfSettings, setUserPdfSettings, set
         ...subHeadingSetting,
     };
 
-    //const tbl = await drawTable(pdfSettings);
-    
     const newDataFormat = data.map((data) => {
         if(data.subheading) return {type: 'subheading', data: {...data.subheading}}
         return {type: 'row', data: {...data}}
     });
-   // console.log(subHeadingSetting); 
+
+    // console.log(newDataFormat);
     const tables = await createPDFTables(
         newDataFormat, // Required - No Default - data t be printed
         page, // Required - No Default - page provided by pdf-lib
@@ -183,11 +182,8 @@ export async function createPdf({ data, userPdfSettings, setUserPdfSettings, set
         {...pdfSettings}
     );
 
-
     tables.drawVerticalTables();
 
-    //console.log(tbl);
-  
     const pdfBytes = await pdfDoc.save()
   
     const bytes  = new Uint8Array( pdfBytes ); 

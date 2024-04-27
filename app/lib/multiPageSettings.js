@@ -30,7 +30,7 @@ export const multiPageTableSettings = ({data, columns, page, pdfDoc, primaryFont
         continuationTextX: undefined, // Text starting X
         continuationTextY: 10, //Text starting Y
         continuationFontSize: 15, // text font size
-        continuationFillerHeight: 20, // this is the hight that will be left by the table
+        continuationFillerHeight: 35, // this is the hight that will be left by the table
         continuationText: 'Continues on Next Page',
 
         appendedPageStartX:  0 + (page.getWidth() / 12),
@@ -84,7 +84,7 @@ export const multiPageTableSettings = ({data, columns, page, pdfDoc, primaryFont
         // subheadingColumns,
         subHeadingBackgroundColor: rgb(0, 0, 0),
         subHeadingHeight: 12,
-        subHeadingFont: 'TimesRomanBold',
+        subHeadingFont: secondaryFont,
         subHeadingTextColor: rgb(0, 0, 0),
         subHeadingTextSize: 10,
         subHeadingLineHeight: 10,
