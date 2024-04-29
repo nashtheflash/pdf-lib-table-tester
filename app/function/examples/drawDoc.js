@@ -1,5 +1,7 @@
-import { PDFDocument, StandardFonts } from 'pdf-lib';
-import { drawTable } from 'pdf-lib-table';
+import { PDFDocument, StandardFonts, rgb} from 'pdf-lib';
+import { createPDFTables } from 'pdf-lib-table';
+// import { columnDefs } from '../../definition';
+import { subheadingColumnDefs } from '../../definition';
 
 export class Doc {
     constructor(example) {
@@ -22,8 +24,6 @@ export class Doc {
         const pdfDoc = await PDFDocument.create();
         const page = pdfDoc.addPage([792.0, 612.0]);
         const data = await this._example.data;
-
-        //console.log(data)
 
         //add fonts to the doc
         const [
@@ -53,21 +53,6 @@ export class Doc {
             pdfDoc.embedStandardFont(StandardFonts.TimesRomanBoldItalic),   //Supported
             pdfDoc.embedStandardFont(StandardFonts.TimesRomanItalic),       //Supported
         ])
-    
-        const fontLookup = {
-            Courier,
-            CourierBold,
-            CourierBoldOblique,
-            CourierOblique,
-            Helvetica,
-            HelveticaBold,
-            HelveticaBoldOblique,
-            HelveticaOblique,
-            TimesRoman,
-            TimesRomanBold,
-            TimesRomanBoldItalic,
-            TimesRomanItalic,
-        };
 
         //TABLE SETTINGS
         const pdfSettings = this._example.tableSettings({ 
@@ -79,21 +64,31 @@ export class Doc {
             secondaryFont: TimesRoman,
         });
     
-        // const tbl = await drawTable({
-        //     ...pdfSettings.Table,
-        //     ...pdfSettings.Header,
-        //     ...pdfSettings.Row,
-        //     ...pdfSettings.Cell,
-        //     ...pdfSettings.Subheader,
-        // });
-        
+        const newDataFormat = data.map((data) => {
+            if(data.subheading) return {type: 'subheading', data: {...data.subheading}}
+            return {type: 'row', data: {...data}}
+        });
+
+        const tables = await createPDFTables(
+            newDataFormat, // Required - No Default - data t be printed
+            page, // Required - No Default - page provided by pdf-lib
+            pdfDoc, // Required - No Default - pdfDoc that the table will be printed on
+            this._example.columnDefs, // Required - No Default - column definitions
+            StandardFonts, // fonts
+            rgb, // colors
+            {...pdfSettings}
+        );
+
+        tables.drawVerticalTables();
+
+
         const pdfBytes = await pdfDoc.save()
         
         const bytes  = new Uint8Array( pdfBytes ); 
         const blob   = new Blob( [ bytes ], { type: "application/pdf" } );
         const docUrl = await URL.createObjectURL(blob)
         
-        setUserPdfSettings(pdfSettings);
+        // setUserPdfSettings(pdfSettings);
         setPdfUrl(docUrl);
     
         return pdfSettings

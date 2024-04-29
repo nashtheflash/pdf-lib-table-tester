@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { FormFieldsLayout, CopyCode, NavBar, TableIframe} from ".";
 import { About, Pro, SinglePageExample, MultiPageExample, SubheadingExample } from "./pages";
 
-import { createPdf, Doc, SinglePage, MultiPage, Subheading} from "../function";
+import { createPdf, Doc, SinglePage, MultiPage, Subheading, Horizontal } from "../function";
 
 import { pdfSettings } from '../lib/defaultTableSettings'
 
@@ -33,11 +33,10 @@ export function HomeLayout({  }) {
 
         if(nav[0].current) document.type = new SinglePage();
         if(nav[1].current) document.type = new MultiPage();
+        if(nav[2].current) document.type = new Horizontal();
         if(nav[3].current) document.type = new Subheading();
 
-        const data = document.data();
-
-        if(pdfUrl) createPdf({ data, userPdfSettings, setUserPdfSettings, setPdfUrl });
+        document.draw({ userPdfSettings, setUserPdfSettings, setPdfUrl });
 
     }, [userPdfSettings, nav]);
 

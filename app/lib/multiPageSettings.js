@@ -11,6 +11,7 @@ export const multiPageTableSettings = ({data, columns, page, pdfDoc, primaryFont
         pdfDoc: pdfDoc, //Required
         pageOrientation: 'protrate',
         fonts: StandardFonts,
+        tableType: 'vertial',
         startingX: 0 + (page.getWidth() / 12),
         startingY: page.getHeight() - 20,
         maxTableWidth: page.getWidth() - ((page.getWidth() / 12) * 2),
@@ -99,10 +100,10 @@ export const multiPageTableSettings = ({data, columns, page, pdfDoc, primaryFont
 
 
     return {
-        Table: tableSettings,
-        Header: headerSettings,
-        Row: rowSettings,
-        Cell: cellSettings,
-        Subheader: subHeadingSetting,
+        ...tableSettings,
+        ...headerSettings,
+        ...rowSettings,
+        ...cellSettings,
+        ...subHeadingSetting,
     }
 };

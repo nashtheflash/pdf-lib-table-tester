@@ -1,7 +1,7 @@
 import { PDFDocument, StandardFonts, degrees, rgb } from 'pdf-lib';
 import { subheadingColumnDefs } from '@/app/definition';
 
-export const singlePageTableSettings = ({data, columns, page, pdfDoc, primaryFont, secondaryFont }) => {
+export const horizontalPageTableSettings = ({data, columns, page, pdfDoc, primaryFont, secondaryFont }) => {
     
     //TABLE SETTINGS
     const tableSettings = {
@@ -11,7 +11,7 @@ export const singlePageTableSettings = ({data, columns, page, pdfDoc, primaryFon
         pdfDoc: pdfDoc, //Required
         pageOrientation: 'protrate',
         fonts: StandardFonts,
-        tableType: 'vertical',
+        tableType: 'horizontal',
         startingX: 0 + (page.getWidth() / 12),
         startingY: page.getHeight() - 50,
         maxTableWidth: page.getWidth() - ((page.getWidth() / 12) * 2),
@@ -25,8 +25,7 @@ export const singlePageTableSettings = ({data, columns, page, pdfDoc, primaryFon
         dividedYColor: undefined, // Default rgb(0,0,0) - can pass in any pdf-lib rgb value
         dividedXThickness: 1, // Default 1 - sets x divider thickness
         dividedYThickness: 1, // Default 1 - sets y divider thickness
-        
-        subheadingColumns: subheadingColumnDefs,
+        // subheadingColumns: subheadingColumnDefs,
 
         //Continuation
         continuationFont: secondaryFont, // Text font
@@ -40,7 +39,7 @@ export const singlePageTableSettings = ({data, columns, page, pdfDoc, primaryFon
         appendedPageStartY: page.getHeight() - 50,
         appendedMaxTableWidth: page.getWidth() - ((page.getWidth() / 12) * 2),
     };
-    
+
     //HEADER SETTINGS
     const headerSettings = {
         //Header

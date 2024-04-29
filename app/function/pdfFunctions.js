@@ -65,6 +65,7 @@ export async function createPdf({ data, userPdfSettings, setUserPdfSettings, set
         pageOrientation: userPdfSettings?.Table.pageOrientation || 'protrate', //TODO: finish this
         pdfDoc, //Required
         fonts: StandardFonts,
+        tableType: userPdfSettings?.Table.tableType,
         startingX: Number(userPdfSettings?.Table.startingX) || 0,
         startingY: Number(userPdfSettings?.Table.startingY) || page.getHeight(),
         maxTableWidth: Number(userPdfSettings?.Table.maxTableWidth) || page.getWidth(),
