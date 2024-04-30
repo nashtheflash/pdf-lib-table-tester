@@ -1,7 +1,9 @@
-import { PaymentWrapper } from '../';
+'use client';
+ 
+import { PaymentWrapper } from "../components";
 import { CheckIcon } from '@heroicons/react/24/solid';
 
-export function Pro() {
+export default function Pro() {
 
     const cart = [{price: 'price_1P3O5FD237q7PsOHCG7lLMFC', quantity: 1,}]
 

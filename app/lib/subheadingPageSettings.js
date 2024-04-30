@@ -98,10 +98,10 @@ export const subheadingPageTableSettings = ({data, columns, page, pdfDoc, primar
 
 
     return {
-        Table: tableSettings,
-        Header: headerSettings,
-        Row: rowSettings,
-        Cell: cellSettings,
-        Subheader: subHeadingSetting,
+        ...tableSettings,
+        ...headerSettings,
+        ...rowSettings,
+        ...cellSettings,
+        ...subHeadingSetting,
     }
 };
