@@ -11,9 +11,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en" data-theme="wireframe">
+        <html lang="en" data-theme="fantasy">
             <body className={`${inter.className} bg-base-100`} suppressHydrationWarning={true}>
-                <div className="h-16">
+                <div className="h-16 bg-base-200 border-b-accent border-2">
                     <NavBar/>
                 </div>
                 {children}

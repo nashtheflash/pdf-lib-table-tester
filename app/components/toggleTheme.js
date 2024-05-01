@@ -18,7 +18,7 @@ export function ToggleTheme({ isPro, setIsPro, themeController }) {
                     type="checkbox" 
                     onClick={handelToggle}
                     onChange={() => ''}
-                    value="fantasy"
+                    value="wireframe"
                     className={`toggle toggle-primary ${themeController ? 'theme-controller' : ''}`}
                     checked={isPro}
                 />

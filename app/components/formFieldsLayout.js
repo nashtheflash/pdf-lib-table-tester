@@ -19,7 +19,7 @@ export function FormFieldsLayout({userPdfSettings, setUserPdfSettings}) {
       {
         Object.keys(userPdfSettings).map((section) => {
           return (
-            <form key={section} className="collapse collapse-arrow bg-base-100 mb-2">
+            <form key={section} className="collapse collapse-arrow bg-base-300 mb-2">
               <input 
                 type="radio"
                 // ref={e => accodianRef.current[section] = {element: e, open: false} } 

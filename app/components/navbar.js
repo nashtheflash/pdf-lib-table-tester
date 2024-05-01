@@ -2,21 +2,24 @@
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { TableCellsIcon } from '@heroicons/react/20/solid';
 
 const pages = [
-    {name: 'Home', current: true, link: '/'},
-    {name: 'Examples', current: false, link: '/examples'},
-    {name: 'Documentaion', current: false, link: '/documentation'},
-    {name: 'About', current: false, link: '/about'},
-    {name: 'Pro', current: false, link: '/pro'},
+    {name: 'Home', link: '/'},
+    {name: 'Examples', link: '/examples'},
+    {name: 'Documentaion', link: '/documentation'},
+    {name: 'About', link: '/about'},
+    {name: 'Pro', link: '/pro'},
 ];
  
-export function NavBar(props) {
+export function NavBar() {
     const pathname = usePathname()
     
     return (
-        <div className='flex justify-center items-center bg-base-200'>
-            <LogoSection/>
+        <div className='flex justify-center items-center'>
+            <div className='min-w-52 pl-4'>
+                <LogoSection/>
+            </div>
             <div className="navbar justify-center">
                 <div className="navbar-center">
                     {
@@ -35,9 +38,11 @@ export function NavBar(props) {
 
 function LogoSection() {
     return(
-        <div className="flex flex-col w-full max-w-80">
-            <h1 className="text-primary">PDF-LIB-TABLE</h1>
-            <div className="divider divider-primary mt-0"></div>
+        <div className='flex justify-start items-center gap-3'>
+            <h1 className="text-xl text-primary">PDF-LIB-TABLE</h1>
+            <div className='h-7 w-7 text-primary'>
+                <TableCellsIcon/>
+            </div>
         </div>
     )
 }

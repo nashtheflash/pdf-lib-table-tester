@@ -1,5 +1,5 @@
 export {FormFieldsLayout} from './formFieldsLayout';
-export {HomeLayout} from './home'
+export {ExampleLayout} from './example'
 export {MultiSelect} from './multiSelectField'
 export {StandardField} from './standardField'
 export {CopyCode} from './copyCode'
@@ -10,3 +10,4 @@ export {TableIframe} from './tableIframe'
 export {StripePayment} from './stripe'
 export { PaymentWrapper } from './payment';
 export {ExampleBar} from './exampleBar';
+export {HomeLayout} from './homeLayout';

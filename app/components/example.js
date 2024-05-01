@@ -15,10 +15,10 @@ const examples = [
     // {name: 'Invoice', current: false},
 ];
 
-export function HomeLayout({  }) {
+export function ExampleLayout({  }) {
     // const [nav, setNav] = useState(pages);
     const [currentExample, setCurrentExample] = useState(examples);
-    const [isPro, setIsPro] = useState(true);
+    const [isPro, setIsPro] = useState(false);
     const [userPdfSettings, setUserPdfSettings] = useState(pdfSettings);
     const [pdfUrl, setPdfUrl] = useState();
 
@@ -42,9 +42,9 @@ export function HomeLayout({  }) {
     }, []);
 
     return (
-        <div className='bg-base-200'>
+        <div className='bg-base-100'>
             <div className='grid grid-cols-4 h-screen justify-center'>
-                <div className='col-span-1 h-full max-w-80 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-primary scrollbar-track-slate-300 scrollbar-w-2 overflow-y-auto overflow-x-hidden'>
+                <div className='col-span-1 h-full scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-primary scrollbar-track-slate-300 scrollbar-w-2 overflow-y-auto overflow-x-hidden'>
                     <div className='sticky top-0 px-2 pt-5'>
                         <CopyCode
                             isPro={isPro}

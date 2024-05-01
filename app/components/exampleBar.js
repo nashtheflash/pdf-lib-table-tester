@@ -8,7 +8,7 @@ export function ExampleBar({examples, setCurrentExample}) {
     };
 
     return (
-        <ul className="menu menu-horizontal bg-base-200 text-secondary">
+        <ul className="menu menu-horizontal bg-base-100 text-secondary">
             {
                 examples.map((ex) => {
                     return (
