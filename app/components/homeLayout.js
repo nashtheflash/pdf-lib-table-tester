@@ -1,6 +1,8 @@
 'use client';
 
 import Image from 'next/image'
+import Link from 'next/link';
+
 import { useIntersectionObserver } from '../hooks';
 
 export default function HomeLayout() {
@@ -8,8 +10,10 @@ export default function HomeLayout() {
   return (
         <div className="flex flex-col bg-base-100">
             <Hero/>
-            <ProductHighlights/>
-            <InstallNow/>
+            <div className='px-12'>
+                <ProductHighlights/>
+                <InstallNow/>
+            </div>
             <Footer/>
         </div>
   );
@@ -114,24 +118,25 @@ function ProductText({easyToUseRef, pageBreakRef, lightweightRef, parameterRef})
 }
 
 function ProductSquare({refs, squareIsIntersecting, easyToUseIsIntersecting, pageBreakIsIntersecting, lightweightIsIntersecting, parameterIsIntersecting}) {
-    console.log(squareIsIntersecting)
-
     return (
-        <div ref={refs} className={`sticky top-[calc(100vh/2-300px)] right-0 h-fit w-[750px] transform transition-all ease-in duration-700 ${easyToUseIsIntersecting | pageBreakIsIntersecting | lightweightIsIntersecting | parameterIsIntersecting ? 'opacity-100' : 'opacity-0 translate-x-32'}`}>
+        <div ref={refs} className={`sticky top-[calc(100vh/2-300px)] right-0 h-fit w-fit transform transition-all ease-in-out duration-700 ${easyToUseIsIntersecting | pageBreakIsIntersecting | lightweightIsIntersecting | parameterIsIntersecting ? 'opacity-100' : 'opacity-0 translate-x-32'}`}>
             <div className="card w-full h-full bg-base-200 text-primary-content">
                 <div className="card-body">
-                    {
-                        easyToUseIsIntersecting ? <EasyToUse/> : pageBreakIsIntersecting ? <PageBreak/> : lightweightIsIntersecting ? <LightWeight/> : parameterIsIntersecting ? <Parameters/> : 'NOTHING TO SEE'
-                    }
+                    <div className='grid grid-cols-1 grid-rows-1'>
+                        <EasyToUse easyToUseIsIntersecting={easyToUseIsIntersecting}/>
+                        <PageBreak pageBreakIsIntersecting={pageBreakIsIntersecting}/>
+                        <LightWeight lightweightIsIntersecting={lightweightIsIntersecting}/>
+                        <Parameters parameterIsIntersecting={parameterIsIntersecting}/>
+                    </div>
                 </div>
             </div>
         </div>
     )
 }
 
-function EasyToUse() {
+function EasyToUse({easyToUseIsIntersecting}) {
     return (
-        <div className="mockup-code">
+        <div className={`mockup-code transition-opacity ease-in duration-700 col-start-1 col-end-1 row-start-1 row-end-1 ${easyToUseIsIntersecting ? 'opacity-100' : 'opacity-0'}`}>
             <pre data-prefix="1"><code>{`import { createPDFTables } from 'pdf-lib-table';`}</code></pre> 
             <pre data-prefix="2"><code></code></pre> 
             <pre data-prefix="3"><code>{`//TABLE SETTINGS`}</code></pre> 
@@ -158,23 +163,22 @@ function EasyToUse() {
     )
 }
 
-function PageBreak() {
+function PageBreak({pageBreakIsIntersecting}) {
     return (
-        <div className='flex justify-center items-center'>
+        <div className={`relative flex justify-center items-center h-full w-full bg-gray-800 rounded-md overflow-hidden transition-opacity ease-in duration-700 col-start-1 col-end-1 row-start-1 row-end-1 ${pageBreakIsIntersecting ? 'opacity-100' : 'opacity-0'}`}>
             <Image
                 src="/continues-on-next-page.svg"
-                width={600}
-                height={600}
                 alt="Picture of the author"
+                fill='true'
             />
         </div>
     
     )
 }
 
-function LightWeight() {
+function LightWeight({lightweightIsIntersecting}) {
     return (
-        <div className='flex justify-center items-center h-[600px] bg-gray-800 rounded-md'>
+        <div className={`flex justify-center items-center h-full w-full bg-gray-800 rounded-md transition-opacity ease-in duration-700 col-start-1 col-end-1 row-start-1 row-end-1 ${lightweightIsIntersecting ? 'opacity-100' : 'opacity-0'}`}>
             <Image
                 src="/to-the-stars.svg"
                 width={600}
@@ -186,9 +190,9 @@ function LightWeight() {
     )
 }
 
-function Parameters() {
+function Parameters({parameterIsIntersecting}) {
     return (
-        <div className='flex justify-center items-center h-[600px] bg-gray-800 rounded-md'>
+        <div className={`flex justify-center items-center h-full w-full bg-gray-800 rounded-md transition-opacity ease-in duration-700 col-start-1 col-end-1 row-start-1 row-end-1 ${parameterIsIntersecting ? 'opacity-100' : 'opacity-0'}`}>
             <Image
                 src="/computer-program.svg"
                 width={600}
@@ -217,7 +221,9 @@ function InstallNow() {
                 <div className="mockup-code w-full mb-4">
                     <pre data-prefix="$"><code>{`import {createTable} from 'pdf-lib-table';`}</code></pre>
                 </div>
-                <button className="btn btn-primary">View Documentation</button>
+                <Link href='/documentation'>
+                    <button className="btn btn-primary">View Documentation</button>
+                </Link>
             </div>
         </div>
     )
@@ -227,10 +233,10 @@ function Footer() {
     return (
         <footer className="footer footer-center p-10 bg-base-200 text-base-content rounded">
             <nav className="grid grid-flow-col gap-4">
-                <a className="link link-hover">About us</a>
-                <a className="link link-hover">Contact</a>
-                <a className="link link-hover">Documentation</a>
-                <a className="link link-hover">Terms of Use</a>
+                <Link href='/examples' className="link link-hover">Examples</Link>
+                <Link href='/contact' className="link link-hover">Contact</Link>
+                <Link href='/documentation' className="link link-hover">Documentation</Link>
+                <Link href='/terms' className="link link-hover">Terms of Use</Link>
             </nav> 
             <nav>
                 <div className="grid grid-flow-col gap-4">
