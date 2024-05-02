@@ -10,4 +10,3 @@ export {TableIframe} from './tableIframe'
 export {StripePayment} from './stripe'
 export { PaymentWrapper } from './payment';
 export {ExampleBar} from './exampleBar';
-export {HomeLayout} from './homeLayout';

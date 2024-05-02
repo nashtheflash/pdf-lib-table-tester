@@ -77,7 +77,7 @@ export function useIntersectionObserver({
   ])
 
   // ensures that if the observed element changes, the intersection observer is reinitialized
-  const prevRef = useRef<Element | null>(null)
+  const prevRef = useRef(null)
 
   useEffect(() => {
     if (
