@@ -119,7 +119,7 @@ function ProductText({easyToUseRef, pageBreakRef, lightweightRef, parameterRef})
 
 function ProductSquare({refs, squareIsIntersecting, easyToUseIsIntersecting, pageBreakIsIntersecting, lightweightIsIntersecting, parameterIsIntersecting}) {
     return (
-        <div ref={refs} className={`sticky top-[calc(100vh/2-300px)] right-0 h-fit w-fit transform transition-all ease-in-out duration-700 ${easyToUseIsIntersecting | pageBreakIsIntersecting | lightweightIsIntersecting | parameterIsIntersecting ? 'opacity-100' : 'opacity-0 translate-x-32'}`}>
+        <div ref={refs} className={`sticky top-[calc(100vh/2-300px)] right-0 h-fit w-fit transform transition-all ease-in-out duration-200 ${easyToUseIsIntersecting | pageBreakIsIntersecting | lightweightIsIntersecting | parameterIsIntersecting ? 'opacity-100' : 'opacity-0 translate-x-32'}`}>
             <div className="card w-full h-full bg-base-200 text-primary-content">
                 <div className="card-body">
                     <div className='grid grid-cols-1 grid-rows-1'>
@@ -136,7 +136,7 @@ function ProductSquare({refs, squareIsIntersecting, easyToUseIsIntersecting, pag
 
 function EasyToUse({easyToUseIsIntersecting}) {
     return (
-        <div className={`mockup-code transition-opacity ease-in duration-700 col-start-1 col-end-1 row-start-1 row-end-1 ${easyToUseIsIntersecting ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`mockup-code transition-opacity ease-in duration-200 col-start-1 col-end-1 row-start-1 row-end-1 ${easyToUseIsIntersecting ? 'opacity-100' : 'opacity-0'}`}>
             <pre data-prefix="1"><code>{`import { createPDFTables } from 'pdf-lib-table';`}</code></pre> 
             <pre data-prefix="2"><code></code></pre> 
             <pre data-prefix="3"><code>{`//TABLE SETTINGS`}</code></pre> 
@@ -165,7 +165,7 @@ function EasyToUse({easyToUseIsIntersecting}) {
 
 function PageBreak({pageBreakIsIntersecting}) {
     return (
-        <div className={`relative flex justify-center items-center h-full w-full bg-gray-800 rounded-md overflow-hidden transition-opacity ease-in duration-700 col-start-1 col-end-1 row-start-1 row-end-1 ${pageBreakIsIntersecting ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`relative flex justify-center items-center h-full w-full bg-gray-800 rounded-md overflow-hidden transition-opacity ease-in duration-200 col-start-1 col-end-1 row-start-1 row-end-1 ${pageBreakIsIntersecting ? 'opacity-100' : 'opacity-0'}`}>
             <Image
                 src="/continues-on-next-page.svg"
                 alt="Picture of the author"
@@ -178,7 +178,7 @@ function PageBreak({pageBreakIsIntersecting}) {
 
 function LightWeight({lightweightIsIntersecting}) {
     return (
-        <div className={`flex justify-center items-center h-full w-full bg-gray-800 rounded-md transition-opacity ease-in duration-700 col-start-1 col-end-1 row-start-1 row-end-1 ${lightweightIsIntersecting ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`flex justify-center items-center h-full w-full bg-gray-800 rounded-md transition-opacity ease-in duration-200 col-start-1 col-end-1 row-start-1 row-end-1 ${lightweightIsIntersecting ? 'opacity-100' : 'opacity-0'}`}>
             <Image
                 src="/to-the-stars.svg"
                 width={600}
@@ -192,7 +192,7 @@ function LightWeight({lightweightIsIntersecting}) {
 
 function Parameters({parameterIsIntersecting}) {
     return (
-        <div className={`flex justify-center items-center h-full w-full bg-gray-800 rounded-md transition-opacity ease-in duration-700 col-start-1 col-end-1 row-start-1 row-end-1 ${parameterIsIntersecting ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`flex justify-center items-center h-full w-full bg-gray-800 rounded-md transition-opacity ease-in duration-200 col-start-1 col-end-1 row-start-1 row-end-1 ${parameterIsIntersecting ? 'opacity-100' : 'opacity-0'}`}>
             <Image
                 src="/computer-program.svg"
                 width={600}

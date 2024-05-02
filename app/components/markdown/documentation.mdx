@@ -1,0 +1,55 @@
+import {MdxLayout} from '../mdx-layout'
+
+# Documentation
+
+## Instillation
+#### 1. install the package from npm:
+
+```
+npm i pdf-lib-table
+```
+
+## Example Usage
+#### 1. import you project into you file
+```
+import { createPDFTables } from 'pdf-lib-table';
+```
+
+#### 2. Build table settings:
+```
+//TABLE SETTINGS
+const pdfSettings = this._example.tableSettings({ 
+    data, 
+    columns: this._example.columnDefs, 
+    page, 
+    pdfDoc,
+    primaryFont: TimesRomanBold,
+    secondaryFont: TimesRoman,
+});
+```
+
+#### 3. Instantiate the table instance:
+```
+const tables = await createPDFTables(
+    newDataFormat,
+    page, 
+    pdfDoc,
+    this._example.columnDefs,
+    StandardFonts,
+    rgb,
+    {...pdfSettings}
+);
+```
+
+#### 4. Draw the table(s)
+```
+tables.drawVerticalTables();
+```
+
+## Settings
+
+
+export default function MDXPage({ children }) {
+  return <MdxLayout>{children}</MdxLayout>
+ 
+}
