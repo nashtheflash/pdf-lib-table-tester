@@ -8,7 +8,7 @@ import { useIntersectionObserver } from '../hooks';
 export default function HomeLayout() {
   
   return (
-        <div className="flex flex-col bg-base-100">
+        <div className="flex flex-col bg-base-100 overflow-x-clip">
             <Hero/>
             <div className='px-12'>
                 <ProductHighlights/>
@@ -30,9 +30,9 @@ function Hero() {
                     alt="Picture of the author"
                 />
                 <div>
-                    <h1 className="text-5xl font-bold">Box Office News!</h1>
-                    <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                    <button className="btn btn-primary">Get Started</button>
+                    <h1 className="text-5xl font-bold">The King of PDF Table Generation</h1>
+                    <p className="py-6">We crated this library because generating pdf tables is hard. Anything that more than the most basic example is not supported. This library aims to solve that</p>
+                    <Link href='/documentation'><button className="btn btn-primary">Get Started</button></Link>
                 </div>
             </div>
         </div>
@@ -100,7 +100,7 @@ function ProductText({easyToUseRef, pageBreakRef, lightweightRef, parameterRef})
                     <h1 className="text-5xl font-bold">Handle Page Breakes with Ease</h1>
                     <p className="py-6">Pages can start with or without headers. Table demensions are returned facilitating dynamic footers to fill space</p>
                 </div>
-            </div>.
+            </div>
             <div ref={lightweightRef} className='flex justify-start h-screen items-center text-gray-500'>
                 <div className='w-1/2'>
                     <h1 className="text-5xl font-bold">Lightweight & Preformant</h1>
@@ -120,7 +120,7 @@ function ProductText({easyToUseRef, pageBreakRef, lightweightRef, parameterRef})
 function ProductSquare({refs, squareIsIntersecting, easyToUseIsIntersecting, pageBreakIsIntersecting, lightweightIsIntersecting, parameterIsIntersecting}) {
     return (
         <div ref={refs} className={`sticky top-[calc(100vh/2-300px)] right-0 h-fit w-fit transform transition-all ease-in-out duration-200 ${easyToUseIsIntersecting | pageBreakIsIntersecting | lightweightIsIntersecting | parameterIsIntersecting ? 'opacity-100' : 'opacity-0 translate-x-32'}`}>
-            <div className="card w-full h-full bg-base-200 text-primary-content">
+            <div className="card w-full min-w-[600px] h-full bg-base-200 text-primary-content">
                 <div className="card-body">
                     <div className='grid grid-cols-1 grid-rows-1'>
                         <EasyToUse easyToUseIsIntersecting={easyToUseIsIntersecting}/>

@@ -10,7 +10,7 @@ export function StandardField({field, fieldDef, userPdfSettings, setUserPdfSetti
                 type={fieldDef.type}
                 name="name"
                 id="name"
-                className="input appearance-none input-bordered input-secondary input-sm w-full"
+                className="input appearance-none input-bordered input-secondary input-sm w-full bg-base-300"
                 onChange={(e) => handleFieldChange(e.target.value, field, setUserPdfSettings, section, userPdfSettings)}
                 placeholder={userPdfSettings[section][field] === 0 ? 0 :'Auto'}
                 value={userPdfSettings[section][field] ? userPdfSettings[section][field] : 0}
@@ -55,14 +55,14 @@ function FieldName({ field }) {
         paidFeatures.includes(field) ?
              <label
                 htmlFor="name"
-                className="absolute select-none -top-2 left-2 inline-block bg-base-100 px-1 text-xs font-medium text-secondary"
+                className="absolute select-none -top-2 left-2 inline-block bg-base-300 px-1 text-xs font-medium text-secondary"
             >
                 {field} <SparklesIcon className={`absolute -top-1 -right-1 text-yellow-400 w-3 h-3`}/>
             </label>
           : 
              <label
                 htmlFor="name"
-                className="absolute select-none -top-2 left-2 inline-block bg-base-100 px-1 text-xs font-medium text-secondary"
+                className="absolute select-none -top-2 left-2 inline-block bg-base-300 px-1 text-xs font-medium text-secondary"
             >
                 {field}
             </label>

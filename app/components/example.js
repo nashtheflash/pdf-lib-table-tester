@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import { FormFieldsLayout, CopyCode, NavBar, TableIframe, ExampleBar} from ".";
+import { FormFieldsLayout, CopyCode, TableIframe, ExampleBar} from ".";
 import {  SinglePageExample, MultiPageExample, SubheadingExample } from "./pages";
 
-import { createPdf, Doc, SinglePage, MultiPage, Subheading, Horizontal } from "../function";
+import { Doc, SinglePage, MultiPage, Subheading } from "../function";
 
 import { pdfSettings } from '../lib/defaultTableSettings'
 
@@ -16,9 +16,8 @@ const examples = [
 ];
 
 export function ExampleLayout({  }) {
-    // const [nav, setNav] = useState(pages);
     const [currentExample, setCurrentExample] = useState(examples);
-    const [isPro, setIsPro] = useState(false);
+    const [isStandard, setIsStandard] = useState(false);
     const [userPdfSettings, setUserPdfSettings] = useState(pdfSettings);
     const [pdfUrl, setPdfUrl] = useState();
 
@@ -43,28 +42,24 @@ export function ExampleLayout({  }) {
 
     return (
         <div className='bg-base-100'>
-            <div className='grid grid-cols-4 h-screen justify-center'>
+            <div className='grid grid-cols-4 h-[calc(100vh-64px)] justify-center'>
                 <div className='col-span-1 h-full scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-primary scrollbar-track-slate-300 scrollbar-w-2 overflow-y-auto overflow-x-hidden'>
                     <div className='sticky top-0 px-2 pt-5'>
                         <CopyCode
-                            isPro={isPro}
-                            setIsPro={setIsPro}
+                            isStandard={isStandard}
+                            setIsStandard={setIsStandard}
                             userPdfSettings={userPdfSettings}
                         />
                         <FormFieldsLayout
                             userPdfSettings={userPdfSettings}
                             setUserPdfSettings={setUserPdfSettings}
-                        />
-                    </div>
-                </div>
-                <div className='col-span-3 h-full overflow-y-hidden'>
-                    <div className="h-12 flex justify-start items-center">
-                        <ExampleBar
                             examples={currentExample}
                             setCurrentExample={setCurrentExample}
                         />
                     </div>
-                    <div className="w-full px-2 pb-3 h-[calc(100vh-64px)]">
+                </div>
+                <div className='col-span-3 h-full overflow-y-hidden'>
+                    <div className="w-full px-2 py-3 h-[calc(100vh-64px)]">
                         { 
                             !pdfUrl ? <div className="skeleton w-full h-full"></div> :
                                 currentExample[0].current ? <SinglePageExample userPdfSettings={userPdfSettings} setUserPdfSettings={setUserPdfSettings} pdfUrl={pdfUrl} setPdfUrl={setPdfUrl}/> :

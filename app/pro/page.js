@@ -8,7 +8,7 @@ export default function Pro() {
     const cart = [{price: 'price_1P3O5FD237q7PsOHCG7lLMFC', quantity: 1,}]
 
     return (
-        <div className='flex justify-between items-center gap-2 text-primary h-full w-full'>
+        <div className='flex justify-between items-center gap-2 text-primary bg-base-100 h-[calc(100vh-64px)] w-full'>
             <div className='grow flex flex-col gap-4'>
                 <FreeCard/>
                 <ProCard/> 

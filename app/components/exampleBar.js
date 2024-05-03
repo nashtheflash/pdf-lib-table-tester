@@ -12,7 +12,7 @@ export function ExampleBar({examples, setCurrentExample}) {
             {
                 examples.map((ex) => {
                     return (
-                    <li key={ex.name}><button onClick={() => handleExampleChange(ex)} className={` ${ex.current ? 'underline' : ''}`}>{ex.name}</button></li>
+                    <li key={ex.name}><button onClick={() => handleExampleChange(ex)} className={`${ex.current ? 'underline' : ''}`}>{ex.name}</button></li>
                     )
                 })
             }

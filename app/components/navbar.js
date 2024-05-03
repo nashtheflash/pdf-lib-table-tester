@@ -8,7 +8,7 @@ const pages = [
     {name: 'Home', link: '/'},
     {name: 'Examples', link: '/examples'},
     {name: 'Documentaion', link: '/documentation'},
-    {name: 'About', link: '/about'},
+    // {name: 'About', link: '/about'},
     {name: 'Pro', link: '/pro'},
 ];
  

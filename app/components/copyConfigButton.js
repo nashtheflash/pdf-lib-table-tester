@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ClipboardIcon } from "@heroicons/react/20/solid"
 
-export function CopyConfigButton({ isPro, userPdfSettings }) {
+export function CopyConfigButton({ isStandard, userPdfSettings }) {
     const [coppied, setCoppied] = useState(false);
 
     return (
@@ -18,7 +18,7 @@ export function CopyConfigButton({ isPro, userPdfSettings }) {
         >
             <button
                 onClick={() => {setCoppied(!coppied); handleCopySettings(userPdfSettings)}}
-                className={`btn btn-square btn-outline btn-sm ${isPro ? 'btn-primary' : ''}`}
+                className={`btn btn-square btn-outline btn-sm ${!isStandard && 'btn-primary'}`}
             >
                 <ClipboardIcon/>
             </button>

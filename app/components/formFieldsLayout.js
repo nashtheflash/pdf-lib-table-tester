@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { StandardField, MultiSelect } from "./";
 import { fieldDefs } from '../lib/formDefs';
 
-export function FormFieldsLayout({userPdfSettings, setUserPdfSettings}) {
+export function FormFieldsLayout({ userPdfSettings, setUserPdfSettings, examples, setCurrentExample }) {
   const [openSections, setopenSection] = useState(false);
 
   const handelAccordianClick = (e, section) => {
@@ -15,36 +15,55 @@ export function FormFieldsLayout({userPdfSettings, setUserPdfSettings}) {
   };
 
   return (
-    <>
-      {
-        Object.keys(userPdfSettings).map((section) => {
-          return (
-            <form key={section} className="collapse collapse-arrow bg-base-300 mb-2">
-              <input 
-                type="radio"
-                // ref={e => accodianRef.current[section] = {element: e, open: false} } 
-                onClick={(e) => handelAccordianClick(e, section)} 
-                onChange={() => ''}
-                name="my-accordion-2" 
-                className="w-full"
-                checked={openSections === section ? true : false}
-              /> 
-              <div className="collapse-title text-xl font-medium text-primary">
-                {section}
-              </div>
-              <div className="collapse-content text-gray-500"> 
-                <FormInputs 
-                  userPdfSettings={userPdfSettings}
-                  setUserPdfSettings={setUserPdfSettings}
-                  section={section}
-                />
-              </div>
+        <>
+            <form className="collapse collapse-arrow bg-base-300 mb-2">
+                <input 
+                    type="radio"
+                    onClick={(e) => handelAccordianClick(e, 'Examples')} 
+                    onChange={() => ''}
+                    name="my-accordion-2" 
+                    className="w-full"
+                    checked={openSections === 'Examples' ? true : false}
+                /> 
+                <div className="collapse-title text-xl font-medium text-primary">
+                    Examples
+                </div>
+                <div className="collapse-content text-gray-500"> 
+                    <Examples
+                        examples={examples}
+                        setCurrentExample={setCurrentExample}
+                    />
+                </div>
             </form>
-          )
-        })
-      }
-    </>
-  )
+            {
+                Object.keys(userPdfSettings).map((section) => {
+                    return (
+                        <form key={section} className="collapse collapse-arrow bg-base-300 mb-2">
+                            <input 
+                                type="radio"
+                                // ref={e => accodianRef.current[section] = {element: e, open: false} } 
+                                onClick={(e) => handelAccordianClick(e, section)} 
+                                onChange={() => ''}
+                                name="my-accordion-2" 
+                                className="w-full"
+                                checked={openSections === section ? true : false}
+                            /> 
+                            <div className="collapse-title text-xl font-medium text-primary">
+                                {section}
+                            </div>
+                            <div className="collapse-content text-gray-500"> 
+                                <FormInputs 
+                                    userPdfSettings={userPdfSettings}
+                                    setUserPdfSettings={setUserPdfSettings}
+                                    section={section}
+                                />  
+                            </div>
+                        </form>
+                    )
+                })
+            }
+        </>
+    )
 };
 
 
@@ -78,3 +97,24 @@ export function FormInputs({userPdfSettings, setUserPdfSettings, section}) {
     </>
   )
 };
+
+export function Examples({examples, setCurrentExample}) {
+    const handleExampleChange = (page) => {
+        const state = [...examples];
+        const newState = state.map((example) => example.name === page.name ? {...example, current: true} : {...example, current: false});
+
+        setCurrentExample(newState);
+    };
+
+    return (
+        <ul className="menu menu-vertial bg-base-300 text-secondary">
+            {
+                examples.map((ex) => {
+                    return (
+                    <li key={ex.name}><button type="button" onClick={() => handleExampleChange(ex)} className={` ${ex.current ? 'underline' : ''}`}>{ex.name}</button></li>
+                    )
+                })
+            }
+        </ul>
+    )
+}
